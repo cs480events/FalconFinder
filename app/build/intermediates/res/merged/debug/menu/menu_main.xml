@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/category"
+        android:title="@string/categories"
+        android:showAsAction="ifRoom"
+        />
+    <item android:id="@+id/close"
+        android:title="@string/user_events"
+        android:showAsAction="ifRoom"
+        />
+    <item android:id="@+id/add"
+        android:title="@string/settings"
+        android:showAsAction="ifRoom"
+        />
+    <item android:id="@+id/delete"
+        android:title="@string/exit"
+        android:showAsAction="ifRoom"
+        />
+</menu>

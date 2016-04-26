@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/myTableLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3f46ac" >
+
+    <TableRow
+
+        android:background="#f5e20b"
+
+        >
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:text="Sports"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="75dp"
+
+            />
+        <Button
+            android:background="#f5e20b"
+            android:text="|||"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+
+            />
+    </TableRow>
+
+
+    <TableRow
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        >
+        <TextView
+            android:id="@+id/eventname"
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:text="Event Name"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            android:layout_marginRight="-40dp"
+            android:layout_marginLeft="0dp"
+            />
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:text="Location"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="-30dp"
+            />
+        <TextView
+            android:id="@+id/Date"
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:text="Date"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            android:layout_marginLeft="-10dp"
+
+            />
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:text="Time"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            android:layout_marginLeft="40dp"
+            />
+
+    </TableRow>
+
+
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:drawSelectorOnTop="true"
+
+        />
+
+
+</TableLayout>
