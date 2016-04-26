@@ -8,7 +8,7 @@
         android:id="@+id/email"
         style="@style/sign_upTextView"
         android:text="@string/email"
-        android:layout_above="@id/password">
+        android:layout_above="@+id/password">
     </TextView>
 
     <EditText
