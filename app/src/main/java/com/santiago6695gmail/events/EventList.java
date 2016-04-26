@@ -139,11 +139,9 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
         String nabber = items.get(position);
-        int locationofend = nabber.indexOf("  ");
-        String grabbedname = nabber.substring(1, locationofend);
 
         Intent i = new Intent(this, ConfirmActivity.class);
-        i.putExtra("Switcher", grabbedname);
+        i.putExtra("Switcher", nabber);
         startActivity(i);
     }
 
