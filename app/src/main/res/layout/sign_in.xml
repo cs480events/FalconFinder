@@ -4,43 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-
     <TextView
-        android:text="Password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textColor="#ff00ff00"
-        android:id="@+id/password"
-        android:layout_above="@+id/calculate"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="38dp">
-    </TextView>
-    <TextView
-        android:text="Enter Email "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textColor="#ff00ff00"
         android:id="@+id/email"
-        android:layout_above="@id/password"
-        android:layout_alignParentStart="true">
+        style="@style/sign_upTextView"
+        android:text="@string/email"
+        android:layout_above="@id/password">
     </TextView>
-
-
-
-    <EditText
-        android:id="@+id/enterPassword"
-        android:inputType="number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/email"
-        android:layout_toEndOf="@+id/email"
-        android:layout_alignBottom="@id/password">
-
-    </EditText>
-
-
 
     <EditText
         android:id="@+id/enterEmail"
@@ -49,30 +18,54 @@
         android:autoText="true"
         android:text=""
         android:layout_alignBottom="@+id/email"
-        android:layout_toEndOf="@+id/email">
+        android:layout_toEndOf="@+id/email"
+        android:layout_toRightOf="@+id/email">
+    </EditText>
 
+    <TextView
+        android:id="@+id/password"
+        style="@style/sign_upTextView"
+        android:text="@string/password"
+        android:layout_above="@+id/log_in"
+        android:layout_marginBottom="38dp">
+    </TextView>
+
+    <EditText
+        android:id="@+id/enterPassword"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/email"
+        android:layout_toEndOf="@+id/password"
+        android:layout_toRightOf="@+id/password"
+        android:layout_alignBottom="@id/password">
     </EditText>
 
     <Button
-        android:id="@+id/calculate"
-        android:text="Log In"
+        android:id="@+id/log_in"
+        android:text="@string/log_in"
         style="@style/buttonStyle"
         android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/enterPassword" />
+        android:layout_toStartOf="@+id/enterPassword"
+        android:layout_toLeftOf="@+id/enterPassword"/>
+
     <Button
         android:id="@+id/signup"
-        android:text="Sign Up"
+        android:text="@string/sign_up"
         style="@style/buttonStyle"
-        android:layout_alignTop="@+id/calculate"
-        android:layout_toEndOf="@+id/calculate"
-        android:layout_marginStart="35dp" />
+        android:layout_alignTop="@+id/log_in"
+        android:layout_toEndOf="@+id/log_in"
+        android:layout_toRightOf="@+id/log_in"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"/>
+
     <Button
         android:id="@+id/eventlistswitch"
-        android:text="PUSH ME FOR EVENTS"
+        android:text="@string/push_me"
         style="@style/buttonStyle"
-        android:layout_below="@+id/calculate"
-        android:layout_toRightOf="@+id/calculate"
-        android:layout_toEndOf="@+id/calculate"
+        android:layout_below="@+id/log_in"
+        android:layout_toRightOf="@+id/log_in"
+        android:layout_toEndOf="@+id/log_in"
         android:layout_marginTop="60dp" />
 
 </RelativeLayout>

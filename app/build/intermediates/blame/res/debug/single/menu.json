@@ -2,5 +2,9 @@
     {
         "merged": "C:\\Users\\leonard_thom\\AndroidStudioProjects\\Events\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
         "source": "C:\\Users\\leonard_thom\\AndroidStudioProjects\\Events\\app\\src\\main\\res\\menu\\menu_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\TORRES_SANT\\AndroidStudioProjects\\Events\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
+        "source": "C:\\Users\\TORRES_SANT\\AndroidStudioProjects\\Events\\app\\src\\main\\res\\menu\\menu_main.xml"
     }
 ]
