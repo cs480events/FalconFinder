@@ -55,7 +55,7 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
         items = new ArrayList<String>();
 
         //Setting up an array adapter and attaching a style
-        todoitems = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+        todoitems = new ArrayAdapter<String>(this, R.layout.mylist, items);
         lview.setAdapter(todoitems);
 
         thred = new Thread(background);
@@ -103,8 +103,15 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
 
                        //read result set, write data to ArrayList and Log
                        while (result.next()) {
-                           String itemadded = result.getString("summary");
-                           items.add(itemadded);
+                           String eventnames = result.getString("summary");
+                           String eventloc = "A Place";
+                           String eventdate = "April 20th, 2016";
+                           String eventtime = "12:00 PM";
+                          // String eventloc = result.getString("location");
+                          // String eventdate = result.getString("date");
+                          // String eventtime = result.getString("time");
+                           String finalevents = "   " + eventnames + "\n" + "\n" + "\n" + "   " + eventloc + "    ||    " + eventdate + "    ||    " + eventtime + "\n";
+                           items.add(finalevents);
 
                        }
                        //clean up
