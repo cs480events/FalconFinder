@@ -110,7 +110,7 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
                           // String eventloc = result.getString("location");
                           // String eventdate = result.getString("date");
                           // String eventtime = result.getString("time");
-                           String finalevents = "   " + eventnames + "\n" + "\n" + "\n" + "   " + eventloc + "    ||    " + eventdate + "    ||    " + eventtime + "\n";
+                           String finalevents = " " + eventnames + "  " +  "\n" + "\n" + "\n" + "   " + eventloc + "    ||    " + eventdate + "    ||    " + eventtime + "\n";
                            items.add(finalevents);
 
                        }
@@ -139,9 +139,11 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
         String nabber = items.get(position);
+        int locationofend = nabber.indexOf("  ");
+        String grabbedname = nabber.substring(1, locationofend);
 
         Intent i = new Intent(this, ConfirmActivity.class);
-        i.putExtra("Switcher", nabber);
+        i.putExtra("Switcher", grabbedname);
         startActivity(i);
     }
 

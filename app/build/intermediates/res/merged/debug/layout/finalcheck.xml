@@ -3,9 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ff00ff00" >
-
-
+    android:background="@color/neon_green" >
 
     <TextView
         android:id="@+id/status"
@@ -22,13 +20,13 @@
         android:id="@+id/yesbutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Yes" />
+        android:text="@string/yes" />
 
     <Button
         android:id="@+id/nobutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No" />
+        android:text="@string/no" />
 
 
 

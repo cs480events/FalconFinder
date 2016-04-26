@@ -12,12 +12,9 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email Notifications"
-            android:textColor="#ff000000"
-            android:textSize="16dp"
-            android:textStyle="bold"/>
+            style="@style/settingsTextView"
+            android:text="@string/emailNotifs"
+            />
 
         <Switch
             android:layout_width="wrap_content"
@@ -34,12 +31,8 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone Notification"
-            android:textColor="#ff000000"
-            android:textSize="16dp"
-            android:textStyle="bold"/>
+            style="@style/settingsTextView"
+            android:text="@string/phoneNotifs" />
 
         <Switch
             android:layout_width="wrap_content"
@@ -57,12 +50,8 @@
         android:weightSum="1">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reminder Time"
-            android:textColor="#ff000000"
-            android:textSize="16dp"
-            android:textStyle="bold"/>
+            style="@style/settingsTextView"
+            android:text="@string/reminder" />
 
         <Spinner
             android:layout_width="125dp"

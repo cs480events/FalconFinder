@@ -29,7 +29,7 @@
     <color name="background_material_dark">@color/material_grey_850</color>
     <color name="background_material_light">@color/material_grey_50</color>
     <color name="black">#000000</color>
-    <color name="blue">#FF000080</color>
+    <color name="blue">#3f46ac</color>
     <color name="bright_foreground_disabled_material_dark">#80ffffff</color>
     <color name="bright_foreground_disabled_material_light">#80000000</color>
     <color name="bright_foreground_inverse_material_dark">@color/bright_foreground_material_light</color>
@@ -75,6 +75,7 @@
     <color name="material_grey_800">#ff424242</color>
     <color name="material_grey_850">#ff303030</color>
     <color name="material_grey_900">#ff212121</color>
+    <color name="neon_green">#ff00ff00</color>
     <color name="primary_dark_material_dark">@android:color/black</color>
     <color name="primary_dark_material_light">@color/material_grey_600</color>
     <color name="primary_material_dark">@color/material_grey_900</color>
@@ -95,7 +96,7 @@
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
     <color name="white">#FFFFFF</color>
-    <color name="yellow">#FFFFFF00</color>
+    <color name="yellow">#f5e20b</color>
     <declare-styleable name="ActionBar"><attr name="navigationMode"><enum name="normal" value="0"/><enum name="listMode" value="1"/><enum name="tabMode" value="2"/></attr><attr name="displayOptions"><flag name="none" value="0"/><flag name="useLogo" value="0x1"/><flag name="showHome" value="0x2"/><flag name="homeAsUp" value="0x4"/><flag name="showTitle" value="0x8"/><flag name="showCustom" value="0x10"/><flag name="disableHome" value="0x20"/></attr><attr name="title"/><attr format="string" name="subtitle"/><attr format="reference" name="titleTextStyle"/><attr format="reference" name="subtitleTextStyle"/><attr format="reference" name="icon"/><attr format="reference" name="logo"/><attr format="reference" name="divider"/><attr format="reference" name="background"/><attr format="reference|color" name="backgroundStacked"/><attr format="reference|color" name="backgroundSplit"/><attr format="reference" name="customNavigationLayout"/><attr name="height"/><attr format="reference" name="homeLayout"/><attr format="reference" name="progressBarStyle"/><attr format="reference" name="indeterminateProgressStyle"/><attr format="dimension" name="progressBarPadding"/><attr name="homeAsUpIndicator"/><attr format="dimension" name="itemPadding"/><attr format="boolean" name="hideOnContentScroll"/><attr format="dimension" name="contentInsetStart"/><attr format="dimension" name="contentInsetEnd"/><attr format="dimension" name="contentInsetLeft"/><attr format="dimension" name="contentInsetRight"/><attr format="dimension" name="elevation"/><attr format="reference" name="popupTheme"/></declare-styleable>
     <declare-styleable name="ActionBarLayout"><attr name="android:layout_gravity"/></declare-styleable>
     <declare-styleable name="ActionMenuItemView"><attr name="android:minWidth"/></declare-styleable>
@@ -299,14 +300,31 @@
     <string name="career_services">Career Services</string>
     <string name="categories">Categories</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
+    <string name="date">Date</string>
+    <string name="email">Email</string>
+    <string name="emailNotifs"> Email Notifications</string>
+    <string name="event_name">Event Name</string>
     <string name="exit">Exit</string>
+    <string name="first_name">First Name</string>
     <string name="greek_life">Greek Life</string>
+    <string name="last_name">Last Name</string>
+    <string name="location"> Location </string>
+    <string name="log_in">Log In</string>
+    <string name="no">No</string>
     <string name="other">Other</string>
+    <string name="password">Password</string>
+    <string name="phoneNotifs">Phone Notifications</string>
+    <string name="push_me">PUSH ME FOR EVENTS</string>
+    <string name="reminder">Reminder Time</string>
     <string name="settings">Settings</string>
+    <string name="sign_up">Sign Up</string>
     <string name="sports">Sports</string>
     <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="time">Time</string>
     <string name="user_events">User Events</string>
+    <string name="userlist_button">|||</string>
     <string name="view_name">Category</string>
+    <string name="yes">Yes</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
@@ -1736,9 +1754,36 @@
     <style name="buttonStyle">
         <item name="android:layout_width">0.5in</item>
         <item name="android:layout_height">0.3in</item>
-        android:layout_height="wrap_content"
-        <item name="android:textColor">#fff</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">20sp</item>
         <item name="android:padding">2dip</item>
+    </style>
+    <style name="settingsTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="sign_upTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/neon_green</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+    <style name="userListButton">
+        <item name="android:background">@color/yellow</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:text">@string/userlist_button</item>
+    </style>
+    <style name="userListTextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_gravity">left</item>
     </style>
 </resources>

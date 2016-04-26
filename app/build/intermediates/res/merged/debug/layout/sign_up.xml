@@ -5,25 +5,10 @@
     android:layout_height="match_parent" >
 
     <TextView
-        android:text="Last Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textColor="#ff00ff00"
-        android:id="@+id/lastName"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="38dp"
-        android:layout_centerVertical="true">
-    </TextView>
-    <TextView
-        android:text="First Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textColor="#ff00ff00"
-        android:id="@+id/firstname"
-        android:layout_above="@id/lastName"
-        android:layout_alignParentStart="true">
+        android:id="@+id/firstName"
+        style="@style/sign_upTextView"
+        android:text="@string/first_name"
+        android:layout_above="@+id/lastName">
     </TextView>
 
     <EditText
@@ -32,31 +17,35 @@
         android:layout_height="wrap_content"
         android:autoText="true"
         android:text=""
-        android:layout_alignBottom="@+id/firstname"
-        android:layout_toEndOf="@+id/firstname">
-
+        android:layout_alignBottom="@+id/firstName"
+        android:layout_toEndOf="@+id/firstName"
+        android:layout_toRightOf="@+id/firstName">
     </EditText>
+
+    <TextView
+        android:id="@+id/lastName"
+        style="@style/sign_upTextView"
+        android:text="@string/last_name"
+        android:layout_marginBottom="38dp"
+        android:layout_centerVertical="true">
+    </TextView>
 
     <EditText
         android:id="@+id/enterLastName"
         android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/enterFirstName"
+        android:layout_below="@+id/enterFirstName"
         android:layout_alignBottom="@id/lastName"
-        android:layout_toEndOf="@+id/lastName">
-
+        android:layout_toEndOf="@+id/lastName"
+        android:layout_toRightOf="@+id/lastName">
     </EditText>
 
     <TextView
-        android:text="Email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textColor="#ff00ff00"
         android:id="@+id/email"
-        android:layout_below="@+id/enterLastName"
-        android:layout_alignParentStart="true">
+        style="@style/sign_upTextView"
+        android:text="@string/email"
+        android:layout_below="@+id/enterLastName">
     </TextView>
 
     <EditText
@@ -67,18 +56,15 @@
         android:text=""
         android:layout_alignBottom="@+id/email"
         android:layout_below="@+id/enterLastName"
-        android:layout_toEndOf="@+id/lastName">
+        android:layout_toEndOf="@+id/lastName"
+        android:layout_toRightOf="@+id/lastName">
     </EditText>
 
     <TextView
-        android:text="Password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textColor="#ff00ff00"
         android:id="@+id/password"
-        android:layout_below="@+id/enterEmail"
-        android:layout_alignParentStart="true">
+        style="@style/sign_upTextView"
+        android:text="@string/password"
+        android:layout_below="@+id/enterEmail">
     </TextView>
 
     <EditText
@@ -89,13 +75,14 @@
         android:text=""
         android:layout_alignBottom="@+id/password"
         android:layout_below="@+id/enterEmail"
-        android:layout_toEndOf="@+id/firstname">
+        android:layout_toEndOf="@+id/firstName"
+        android:layout_toRightOf="@+id/firstName">
     </EditText>
 
     <Button
         android:id="@+id/signup"
-        android:text="Sign Up"
         style="@style/buttonStyle"
+        android:text="@string/sign_up"
         android:layout_below="@+id/password"
         android:layout_centerHorizontal="true" />
 

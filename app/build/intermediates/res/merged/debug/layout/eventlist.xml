@@ -3,91 +3,54 @@
     android:id="@+id/myTableLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3f46ac" >
+    android:background="@color/blue" >
 
     <TableRow
-
-        android:background="#f5e20b"
-
-        >
+        android:background="@color/yellow">
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
-            android:text="Sports"
-            android:textColor="#000000"
+            android:text="@string/sports"
+            android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:layout_marginLeft="75dp"
-
-            />
-        <Button
-            android:background="#f5e20b"
-            android:text="|||"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-
-            />
+            android:layout_marginLeft="75dp" />
+        <Button style="@style/userListButton" />
     </TableRow>
-
 
     <TableRow
         android:gravity="center"
-        android:layout_marginTop="5dp"
-        >
+        android:layout_marginTop="5dp">
         <TextView
             android:id="@+id/eventname"
-            android:layout_width="wrap_content"
-            android:layout_gravity="left"
-            android:text="Event Name"
-            android:textColor="#ffffff"
-            android:textSize="12sp"
+            style="@style/userListTextView"
+            android:text="@string/event_name"
             android:layout_marginRight="-40dp"
-            android:layout_marginLeft="0dp"
-            />
+            android:layout_marginLeft="0dp" />
         <TextView
             android:id="@+id/location"
-            android:layout_width="wrap_content"
-            android:layout_gravity="left"
-            android:text="Location"
-            android:textColor="#ffffff"
-            android:textSize="12sp"
+            style="@style/userListTextView"
+            android:text="@string/location"
             android:layout_marginRight="10dp"
-            android:layout_marginLeft="-30dp"
-            />
+            android:layout_marginLeft="-30dp" />
         <TextView
             android:id="@+id/Date"
-            android:layout_width="wrap_content"
-            android:layout_gravity="left"
-            android:text="Date"
-            android:textColor="#ffffff"
-            android:textSize="12sp"
-            android:layout_marginLeft="-10dp"
-
-            />
+            style="@style/userListTextView"
+            android:text="@string/date"
+            android:layout_marginLeft="-10dp" />
         <TextView
             android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_gravity="left"
-            android:text="Time"
-            android:textColor="#ffffff"
-            android:textSize="12sp"
-            android:layout_marginLeft="40dp"
-            />
-
+            style="@style/userListTextView"
+            android:text="@string/time"
+            android:layout_marginLeft="40dp" />
     </TableRow>
-
 
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:drawSelectorOnTop="true"
-        android:textSize="12sp"
-
-        />
-
-
+        android:textSize="12sp" />
 
 </TableLayout>
