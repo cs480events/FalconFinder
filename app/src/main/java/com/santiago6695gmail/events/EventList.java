@@ -125,6 +125,11 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
 
                            String eventnames = result.getString("summary"); //event name
                            String eventloc = result.getString("location"); //event location; MAKE IT SO NULL FIELDS ARENT BLANK
+                           if (eventloc == null ){
+                               eventloc = "Dana Center";
+                           }else if(eventloc.equals("") ){
+                               eventloc = "Dana Center";
+                           }
                            String eventdate = result.getString("date"); //event date
                            String eventtime = result.getString("start_time"); //event start time
                            String eventID = result.getString("EventID"); //primary key, ABSOLUTELY NECCESARY
