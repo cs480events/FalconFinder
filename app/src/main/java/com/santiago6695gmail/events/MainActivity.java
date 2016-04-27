@@ -88,13 +88,6 @@ public class MainActivity extends Activity implements OnClickListener {
         }
 
         try {
-            // execute SQL commands to create table, insert data, select contents
-            //stmt.executeUpdate("drop table if exists first;");
-            //stmt.executeUpdate("create table first(id integer primary key, city varchar(25));");
-            //stmt.executeUpdate("insert into first values(1, 'Waltham');");
-            //stmt.executeUpdate("insert into first values(2, 'Cambridge');");
-            //stmt.executeUpdate("insert into first values(3, 'Boston');");
-
             ResultSet result = stmt.executeQuery("select * from cs460teamc.eventlist;");
 
             //read result set, write data to ArrayList and Log
