@@ -25,18 +25,15 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
 
     private ListView lview; //For my list view widget
     private ArrayList<String> items; //An array list to hold all the list view items
-    private ArrayAdapter<String> todoitems;
-    private int counter;
-    private String finaltask;
-    private String positiontext;
-    private int positionholder;
-    private Button testbutton;
-    private int x;
-    private Thread thred = null;
+    private ArrayAdapter<String> todoitems; //Array adapter for my list view
+    private Thread thred = null; //Thread used for background task (JDBC)
+    private ArrayList<String> itemswithID; //Second array list, to hold the names WITH id numbers as well
+
+
 
     Handler handler = new Handler() {
         public void handleMessage(Message msg) { //Method which handles the messages sent
-            if (msg.obj.equals("IsDone")){
+            if (msg.obj.equals("IsDone")){ //Notify the array adapter that data is changed, if it gets the ok from my messenger
                 todoitems.notifyDataSetChanged();
             }
         }
@@ -47,17 +44,19 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
         super.onCreate(icicle);
         setContentView(R.layout.eventlist);
 
-        //Setting up my list views
+        //Setting up my list view
         lview = (ListView) findViewById(R.id.list);
         lview.setOnItemClickListener(this);
 
-        //Adding to the array list each time the Add/Update menu option is selected
+        //Initializing the array lists
         items = new ArrayList<String>();
+        itemswithID = new ArrayList<String>();
 
-        //Setting up an array adapter and attaching a style
+        //Setting up the array adapter and attaching a style
         todoitems = new ArrayAdapter<String>(this, R.layout.mylist, items);
         lview.setAdapter(todoitems);
 
+        //Begin background thread, so the events can be pulled from the database to the listview
         thred = new Thread(background);
         thred.start();
     }
@@ -65,62 +64,57 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
 
     Runnable background = new Runnable() {
        @Override
-       public void run() {
+       public void run() { //Background task for all that fun JDBC!
 
 
-                   String URL = "jdbc:mysql://frodo.bentley.edu:3306/CS460Teamc";
-                   String username = "cs460teamc";
-                   String password = "cs460teamc";
+           String URL = "jdbc:mysql://frodo.bentley.edu:3306/CS460Teamc"; //URL for our database
 
-                   try { //load driver into VM memory
+           try { //load the driver, and catch error if it happens early on
                        Class.forName("com.mysql.jdbc.Driver");
-                   } catch (ClassNotFoundException e) {
+           } catch (ClassNotFoundException e) {
                        Log.e("JDBC", "Did not load driver");
 
-                   }
+           }
 
-                   Statement stmt = null;
-                   Connection con = null;
-                   try { //create connection and statement objects
+
+           //create connection and statement objects
+           Statement stmt = null;
+           Connection con = null;
+
+                   try { //Try to connect
 
                        con = DriverManager.getConnection("jdbc:mysql://frodo.bentley.edu:3306/CS460Teamc", "cs460teamc", "cs460teamc");
-
                        stmt = con.createStatement();
 
                    } catch (SQLException e) {
-                       Log.e("JDBC", "problem connecting");
+                       Log.e("JDBC", "problem connecting"); //If issues connecting
                    }
 
                    try {
-                       // execute SQL commands to create table, insert data, select contents
-                       //stmt.executeUpdate("drop table if exists first;");
-                       //stmt.executeUpdate("create table first(id integer primary key, city varchar(25));");
-                       //stmt.executeUpdate("insert into first values(1, 'Waltham');");
-                       //stmt.executeUpdate("insert into first values(2, 'Cambridge');");
-                       //stmt.executeUpdate("insert into first values(3, 'Boston');");
 
-                       ResultSet result = stmt.executeQuery("select * from cs460teamc.eventlist;");
+                       ResultSet result = stmt.executeQuery("select * from cs460teamc.eventlist;"); //If it works, give us all of it!!!
 
-                       //read result set, write data to ArrayList and Log
                        while (result.next()) {
-                           String eventnames = result.getString("summary");
-                           String eventloc = "A Place";
-                           String eventdate = "April 20th, 2016";
-                           String eventtime = "12:00 PM";
-                          // String eventloc = result.getString("location");
-                          // String eventdate = result.getString("date");
-                          // String eventtime = result.getString("time");
-                           String finalevents = " " + eventnames + "  " +  "\n" + "\n" + "\n" + "   " + eventloc + "    ||    " + eventdate + "    ||    " + eventtime + "\n";
-                           items.add(finalevents);
 
+                           String eventnames = result.getString("summary"); //event name
+                           String eventloc = result.getString("location"); //event location; MAKE IT SO NULL FIELDS ARENT BLANK
+                           String eventdate = result.getString("date"); //event date
+                           String eventtime = result.getString("start_time"); //event start time
+                           String eventID = result.getString("EventID"); //primary key, ABSOLUTELY NECCESARY
+                           String finalevents = " " + eventnames + "  " +  "\n" + "\n" + "\n" + "   " +
+                                   eventloc + "    ||    " + eventdate + "    ||    " + eventtime + "\n"; //format for the user's pleasure
+                           items.add(finalevents); //add the formatted string to the list view
+
+                           String thegoodstuff = eventnames + ":::" + eventID; //the stuff WE actually care about: name and PK
+                           itemswithID.add(thegoodstuff); //add this stuff to a separate array
                        }
-                       //clean up
 
+                       //clean up
                        con.close();
 
                    } catch (SQLException e) {
                        Log.e("JDBC", "problems with SQL sent to " + URL +
-                               ": " + e.getMessage());
+                               ": " + e.getMessage()); //If the SQL statements are wrong
                    }
 
            Message msg = handler.obtainMessage(1, "IsDone"); //Shooting the information over to the handler for inspection
@@ -131,17 +125,13 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
 
    };
 
-
-
-
-
     //Required method. What to do when a list item is clicked
     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
-        String nabber = items.get(position);
+        String nabber = itemswithID.get(position); //We're actually grabbing from our second array that user DOES NOT see
 
-        Intent i = new Intent(this, ConfirmActivity.class);
-        i.putExtra("Switcher", nabber);
+        Intent i = new Intent(this, ConfirmActivity.class); //Intent to move us to the confirmation
+        i.putExtra("Switcher", nabber); //Store the name and primary key of the event selected
         startActivity(i);
     }
 
