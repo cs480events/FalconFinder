@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\leonard_thom\AndroidStudioProjects\Events\app\src\main\AndroidManifest.xml:2:1-24:12
+ADDED from C:\Users\leonard_thom\AndroidStudioProjects\Events\app\src\main\AndroidManifest.xml:2:1-25:12
 	package
 		ADDED from C:\Users\leonard_thom\AndroidStudioProjects\Events\app\src\main\AndroidManifest.xml:3:5-43
 		INJECTED from C:\Users\leonard_thom\AndroidStudioProjects\Events\app\src\main\AndroidManifest.xml
@@ -18,7 +18,7 @@ ADDED from C:\Users\leonard_thom\AndroidStudioProjects\Events\app\src\main\Andro
 	android:name
 		ADDED from C:\Users\leonard_thom\AndroidStudioProjects\Events\app\src\main\AndroidManifest.xml:5:22-64
 application
-ADDED from C:\Users\leonard_thom\AndroidStudioProjects\Events\app\src\main\AndroidManifest.xml:6:5-22:19
+ADDED from C:\Users\leonard_thom\AndroidStudioProjects\Events\app\src\main\AndroidManifest.xml:6:5-23:19
 MERGED from [com.android.support:appcompat-v7:23.2.1] C:\Users\leonard_thom\AndroidStudioProjects\Events\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.1\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-v4:23.2.1] C:\Users\leonard_thom\AndroidStudioProjects\Events\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:animated-vector-drawable:23.2.1] C:\Users\leonard_thom\AndroidStudioProjects\Events\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.1\AndroidManifest.xml:7:5-20
@@ -68,6 +68,10 @@ activity#com.santiago6695gmail.events.ConfirmActivity
 ADDED from C:\Users\leonard_thom\AndroidStudioProjects\Events\app\src\main\AndroidManifest.xml:21:9-53
 	android:name
 		ADDED from C:\Users\leonard_thom\AndroidStudioProjects\Events\app\src\main\AndroidManifest.xml:21:19-50
+activity#com.santiago6695gmail.events.UserEvents
+ADDED from C:\Users\leonard_thom\AndroidStudioProjects\Events\app\src\main\AndroidManifest.xml:22:9-48
+	android:name
+		ADDED from C:\Users\leonard_thom\AndroidStudioProjects\Events\app\src\main\AndroidManifest.xml:22:19-45
 uses-sdk
 INJECTED from C:\Users\leonard_thom\AndroidStudioProjects\Events\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.2.1] C:\Users\leonard_thom\AndroidStudioProjects\Events\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.1\AndroidManifest.xml:21:5-23:78
