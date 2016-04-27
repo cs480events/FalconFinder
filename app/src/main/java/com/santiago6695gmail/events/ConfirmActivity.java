@@ -1,11 +1,13 @@
 package com.santiago6695gmail.events;
 
+import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,13 +25,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Locale;
 
-public class ConfirmActivity extends Activity implements OnClickListener {
+public class ConfirmActivity extends Activity implements OnClickListener, TextToSpeech.OnInitListener {
 
     private Button yesbutton; //Button for if user clicks yes
     private Button nobutton; //Button for if user clicks no
     private String value; //String to hold initial String passed via intent
-    private String grabbedname; //Grabbing only the name from the string
+    private String grabbedname ="blank"; //Grabbing only the name from the string
     private String PRIMARYKEY; //Grabbing only the PK from the string
     private TextView tview; //Text view widget
     private Thread t = null; //Background thread for running JDBC
@@ -37,6 +40,8 @@ public class ConfirmActivity extends Activity implements OnClickListener {
     private Intent movebackyes; //Moves user back to EventList if yes is clicked
     private Intent movebackno; //Moves user back to EventList if no is clicked
     private String useremail = "'XIE_XIAO@bentley.edu'"; //Email/login of the current user
+    private TextToSpeech speaker; // speaker for speaking event added
+    private static final String tag = "Speaking";
 
 
     Handler infohandler = new Handler() { //Method which handles the messages sent
@@ -45,6 +50,7 @@ public class ConfirmActivity extends Activity implements OnClickListener {
 
                 tust.show(); //Show user the success toast
                 startActivity(movebackyes); //Move back to the main event list
+                speak(grabbedname + "added!");
 
             }
         }
@@ -84,12 +90,47 @@ public class ConfirmActivity extends Activity implements OnClickListener {
         //Setting t to the background runnable, to be used when we are ready
         t = new Thread(background);
 
+        //Initialize Text to Speech engine (context, listener object)
+        speaker = new TextToSpeech(this, this);
+
         }
 // set up menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @TargetApi(21)
+    public void speak(String output){
+        if(output.equals(null))
+        {
+
+        }
+        else
+        speaker.speak(output, TextToSpeech.QUEUE_FLUSH, null, "Id 0");
+    }
+
+    public void onInit(int status) {
+        // status can be either TextToSpeech.SUCCESS or TextToSpeech.ERROR.
+        if (status == TextToSpeech.SUCCESS) {
+            // Set preferred language to US english.
+            // If a language is not be available, the result will indicate it.
+            int result = speaker.setLanguage(Locale.US);
+
+            //  int result = speaker.setLanguage(Locale.FRANCE);
+            if (result == TextToSpeech.LANG_MISSING_DATA ||
+                    result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                // Language data is missing or the language is not supported.
+                Log.e(tag, "Language is not available.");
+            } else {
+                // The TTS engine has been successfully initialized
+                Log.i(tag, "TTS Initialization successful.");
+            }
+        } else {
+            // Initialization failed.
+            Log.e(tag, "Could not initialize TextToSpeech.");
+        }
     }
     public void goCategory (MenuItem item) {
         setContentView(R.layout.category_list);
@@ -119,7 +160,6 @@ public class ConfirmActivity extends Activity implements OnClickListener {
 
                 movebackyes = new Intent(this, EventList.class); //Intent set up
                 t.start(); //Start the background thread
-
                 yesbutton.setVisibility(View.GONE); //Hide the buttons so user can't crash the program
                 nobutton.setVisibility(View.GONE);
 
