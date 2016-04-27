@@ -120,6 +120,9 @@ public class ConfirmActivity extends Activity implements OnClickListener {
                 movebackyes = new Intent(this, EventList.class); //Intent set up
                 t.start(); //Start the background thread
 
+                yesbutton.setVisibility(View.GONE); //Hide the buttons so user can't crash the program
+                nobutton.setVisibility(View.GONE);
+
                 break;
 
             case R.id.nobutton:

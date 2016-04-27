@@ -97,7 +97,6 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
         @Override
         public void run() { //Background task for all that fun JDBC!
 
-
             String URL = "jdbc:mysql://frodo.bentley.edu:3306/CS460Teamc"; //URL for our database
 
             try { //load the driver, and catch error if it happens early on
@@ -106,7 +105,6 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
                 Log.e("JDBC", "Did not load driver");
 
             }
-
 
             //create connection and statement objects
             Statement stmt = null;
@@ -123,22 +121,29 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
 
             try {
 
-                ResultSet result = stmt.executeQuery("select * from cs460teamc.eventlist;"); //If it works, give us all of it!!!
+                ResultSet result = stmt.executeQuery("select * from cs460teamc.user_event where email = XIE_XIAO@bentley.edu;"); //If it works, give us all of it!!!
 
                 while (result.next()) {
 
-                    String eventnames = result.getString("summary"); //event name
-                    String eventloc = result.getString("location"); //event location; MAKE IT SO NULL FIELDS ARENT BLANK
-                    String eventdate = result.getString("date"); //event date
-                    String eventtime = result.getString("start_time"); //event start time
-                    String eventID = result.getString("EventID"); //primary key, ABSOLUTELY NECCESARY
+                    String eID = result.getString("EventID"); //primary key, ABSOLUTELY NECCESARY
+                    ResultSet whatwewant = stmt.executeQuery("select * from cs460teamc.eventlist where EventID = " + eID + ";");
+
+                    String eventnames = whatwewant.getString("summary"); //event name
+                    String eventloc = whatwewant.getString("location"); //event location; MAKE IT SO NULL FIELDS ARENT BLANK
+                    String eventdate = whatwewant.getString("date"); //event date
+                    String eventtime = whatwewant.getString("start_time"); //event start time
+                    String eventID = whatwewant.getString("EventID"); //primary key, ABSOLUTELY NECCESARY
                     String finalevents = " " + eventnames + "  " +  "\n" + "\n" + "\n" + "   " +
                             eventloc + "    ||    " + eventdate + "    ||    " + eventtime + "\n"; //format for the user's pleasure
+
                     items.add(finalevents); //add the formatted string to the list view
 
                     String thegoodstuff = eventnames + ":::" + eventID; //the stuff WE actually care about: name and PK
                     itemswithID.add(thegoodstuff); //add this stuff to a separate array
+
                 }
+
+
 
                 //clean up
                 con.close();
@@ -159,10 +164,10 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
     //Required method. What to do when a list item is clicked
     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
-        String nabber = itemswithID.get(position); //We're actually grabbing from our second array that user DOES NOT see
+        String snagger = itemswithID.get(position); //We're actually grabbing from our second array that user DOES NOT see
 
         Intent i = new Intent(this, ConfirmActivity.class); //Intent to move us to the confirmation
-        i.putExtra("Switcher", nabber); //Store the name and primary key of the event selected
+        i.putExtra("The Deleta", snagger); //Store the name and primary key of the event selected
         startActivity(i);
     }
 
