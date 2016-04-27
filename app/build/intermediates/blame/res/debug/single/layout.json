@@ -44,12 +44,12 @@
         "source": "C:\\Users\\leonard_thom\\AndroidStudioProjects\\Events\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
-        "merged": "C:\\Users\\leonard_thom\\AndroidStudioProjects\\Events\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_header.xml",
-        "source": "C:\\Users\\leonard_thom\\AndroidStudioProjects\\Events\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_navigation_item_header.xml"
-    },
-    {
         "merged": "C:\\Users\\leonard_thom\\AndroidStudioProjects\\Events\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
         "source": "C:\\Users\\leonard_thom\\AndroidStudioProjects\\Events\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "C:\\Users\\leonard_thom\\AndroidStudioProjects\\Events\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_header.xml",
+        "source": "C:\\Users\\leonard_thom\\AndroidStudioProjects\\Events\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_navigation_item_header.xml"
     },
     {
         "merged": "C:\\Users\\leonard_thom\\AndroidStudioProjects\\Events\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_singlechoice_material.xml",
