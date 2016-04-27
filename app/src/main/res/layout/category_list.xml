@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/blue">
+    android:background="@color/dark_blue">
     <TextView
         android:id="@+id/name"
         android:background="@color/yellow"
@@ -21,21 +21,22 @@
         android:layout_centerHorizontal="true"
         android:layout_width="200dip"
         android:layout_height="wrap_content"
-        android:background="@color/light_blue"
+        android:background="@color/blue"
         android:layout_below="@+id/name"
         android:text="@string/all"
         android:textAllCaps="false">
     </Button>
 
+
     <Button
-        android:id="@+id/Greek_Life"
+        android:id="@+id/Sports"
         android:layout_marginTop="10dip"
         android:layout_centerHorizontal="true"
         android:layout_width="200dip"
         android:layout_height="wrap_content"
-        android:background="@color/light_blue"
+        android:background="@color/blue"
         android:layout_below="@+id/all"
-        android:text="@string/greek_life"
+        android:text="@string/sports"
         android:textAllCaps="false">
     </Button>
     <Button
@@ -44,20 +45,9 @@
         android:layout_centerHorizontal="true"
         android:layout_width="200dip"
         android:layout_height="wrap_content"
-        android:background="@color/light_blue"
-        android:layout_below="@+id/Greek_Life"
+        android:background="@color/blue"
+        android:layout_below="@+id/Sports"
         android:text="@string/career_services"
-        android:textAllCaps="false">
-    </Button>
-    <Button
-        android:id="@+id/Sports"
-        android:layout_marginTop="10dip"
-        android:layout_centerHorizontal="true"
-        android:layout_width="200dip"
-        android:layout_height="wrap_content"
-        android:background="@color/light_blue"
-        android:layout_below="@+id/Career_Service"
-        android:text="@string/sports"
         android:textAllCaps="false">
     </Button>
     <Button
@@ -66,8 +56,8 @@
         android:layout_centerHorizontal="true"
         android:layout_width="200dip"
         android:layout_height="wrap_content"
-        android:background="@color/light_blue"
-        android:layout_below="@+id/Sports"
+        android:background="@color/blue"
+        android:layout_below="@+id/Career_Service"
         android:text="@string/other"
         android:textAllCaps="false">
     </Button>

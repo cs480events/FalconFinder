@@ -34,9 +34,8 @@
 
     //buttons
     <string name="all">All</string>
-    <string name="greek_life">Greek Life</string>
-    <string name="career_services">Career Services</string>
-    <string name="sports">Sports</string>
+    <string name="career_services">Career</string>
+    <string name="sports">Athletics</string>
     <string name="other">Other</string>
 
     //menu
@@ -47,10 +46,12 @@
 
     //colors
     <color name="yellow">#f5e20b</color>
+    <color name="dark_yellow">#d79c05</color>
     <color name="white">#FFFFFF</color>
     <color name="gray">#FF999999</color>
-    <color name="blue">#3f46ac</color>
     <color name="light_blue">#FFADD8e6</color>
+    <color name="blue">#3f46ac</color>
+    <color name="dark_blue">#040753</color>
     <color name="black">#000000</color>
     <color name="red">#FFF80000</color>
     <color name="neon_green">#ff00ff00</color>
