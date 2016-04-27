@@ -128,6 +128,27 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
         return true;
     }
 
+    public void goCategory (MenuItem item) {
+        setContentView(R.layout.category_list);
+    }
+
+    // go to userevents
+    public void goUserEvents(MenuItem item) {
+        setContentView(R.layout.userlist);
+        Intent i = new Intent (this, UserEvents.class);
+        startActivity(i);
+    }
+    //go all events
+    public void goAllEvents(MenuItem item) {
+        setContentView(R.layout.eventlist);
+        Intent i = new Intent (this, EventList.class);
+        startActivity(i);
+    }
+    // exit the app
+    public void exit(MenuItem item) {
+        System.exit(0);
+    }
+
     @TargetApi(21)
     public void speak(String output){
         if(output.equals(null))
@@ -159,21 +180,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
             Log.e(tag, "Could not initialize TextToSpeech.");
         }
     }
-    public void goCategory (MenuItem item) {
-        setContentView(R.layout.category_list);
-    }
 
-    // go to userevents
-    public void goUserEvents(MenuItem item) {
-        setContentView(R.layout.eventlist);
-        Intent i = new Intent (this, EventList.class);
-        startActivity(i);
-
-    }
-    // exit the app
-    public void exit(MenuItem item) {
-        System.exit(0);
-    }
 
 
     public void onClick(View v) { //Onclick listener

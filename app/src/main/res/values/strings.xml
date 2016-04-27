@@ -40,7 +40,7 @@
 
     //menu
     <string name="exit">Exit</string>
-    <string name="settings">Settings</string>
+    <string name="all_events">All Events</string>
     <string name="user_events">User Events</string>
     <string name="categories">Categories</string>
 

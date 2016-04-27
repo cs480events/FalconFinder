@@ -54,26 +54,6 @@ public class MainActivity extends Activity implements OnClickListener {
         switcheventbutton.setOnClickListener(this);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-    //go to categories
-    public void goCategory (MenuItem item) {
-        setContentView(R.layout.category_list);
-    }
-
-    // go to userevents
-    public void goUserEvents(MenuItem item) {
-        Intent i = new Intent (this, UserEvents.class);
-        startActivity(i);
-    }
-    // exit the app
-    public void exit(MenuItem item) {
-        System.exit(0);
-    }
-
     public void onClick(View v) {
         setContentView(R.layout.eventlist);
         Intent i = new Intent (this, EventList.class);
