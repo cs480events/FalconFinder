@@ -20,6 +20,8 @@
     <activity android:name=".EventList" />
         <activity android:name=".ConfirmActivity" />
         <activity android:name=".UserEvents" />
+        <activity android:name=".Category"/>
     </application>
+
 
 </manifest>

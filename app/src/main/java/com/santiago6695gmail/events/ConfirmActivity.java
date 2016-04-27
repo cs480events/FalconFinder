@@ -130,6 +130,8 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
     public void goCategory (MenuItem item) {
         setContentView(R.layout.category_list);
+        Intent i = new Intent(this, Category.class);
+        startActivity(i);
     }
 
     // go to userevents
