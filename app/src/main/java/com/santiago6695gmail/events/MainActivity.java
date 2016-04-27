@@ -66,8 +66,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
     // go to userevents
     public void goUserEvents(MenuItem item) {
-        setContentView(R.layout.eventlist);
-        Intent i = new Intent (this, EventList.class);
+        Intent i = new Intent (this, UserEvents.class);
         startActivity(i);
 
     }
