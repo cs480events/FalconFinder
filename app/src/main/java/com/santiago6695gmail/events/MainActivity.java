@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.Button;
 import java.sql.Connection;
@@ -17,11 +19,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnClickListener {
 
     private Thread t = null;
     private ArrayList<String> list = new ArrayList<String>();
+    private TextView slogan = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,9 +34,12 @@ public class MainActivity extends Activity implements OnClickListener {
         //hide title and icon in action bar
         ActionBar actionBar = getActionBar();
         actionBar.show();
-        // actionBar.setDisplayShowTitleEnabled(false);
-        // actionBar.setDisplayUseLogoEnabled(false);
-        //set up buttons
+        //animated slogan
+        slogan = (TextView) findViewById(R.id.slogan);
+        final Animation in = new AlphaAnimation(0.0f, 1.0f);
+        in.setDuration(5000);
+        slogan.startAnimation(in);
+        slogan.setText("Find all events on campus!");
 
         Button signUpButton = (Button) findViewById(R.id.signup);
         signUpButton.setOnClickListener(new View.OnClickListener() {
