@@ -5,10 +5,15 @@
         android:showAsAction="ifRoom"
         android:onClick="goCategory"
         />
-    <item android:id="@+id/close"
+    <item android:id="@+id/userEvents"
         android:title="@string/user_events"
         android:showAsAction="ifRoom"
         android:onClick="goUserEvents"
+        />
+    <item android:id="@+id/allEvents"
+        android:title="@string/all_events"
+        android:showAsAction="ifRoom"
+        android:onClick="goAllEvents"
         />
     <item android:id="@+id/delete"
         android:title="@string/exit"

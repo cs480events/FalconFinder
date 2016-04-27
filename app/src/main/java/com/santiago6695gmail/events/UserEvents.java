@@ -80,10 +80,15 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
 
     // go to userevents
     public void goUserEvents(MenuItem item) {
+        setContentView(R.layout.userlist);
+        Intent i = new Intent (this, UserEvents.class);
+        startActivity(i);
+    }
+    //go all events
+    public void goAllEvents(MenuItem item) {
         setContentView(R.layout.eventlist);
         Intent i = new Intent (this, EventList.class);
         startActivity(i);
-
     }
     // exit the app
     public void exit(MenuItem item) {
