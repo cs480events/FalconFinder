@@ -3,11 +3,15 @@ package com.santiago6695gmail.events;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.speech.tts.TextToSpeech;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,17 +35,27 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
     private Button yesbutton; //Button for if user clicks yes
     private Button nobutton; //Button for if user clicks no
+
     private String value; //String to hold initial String passed via intent
     private String grabbedname ="blank"; //Grabbing only the name from the string
     private String PRIMARYKEY; //Grabbing only the PK from the string
+    private String useremail = "'XIE_XIAO@bentley.edu'"; //Email/login of the current user
+    private static final String tag = "Speaking";
+
     private TextView tview; //Text view widget
+
     private Thread t = null; //Background thread for running JDBC
+
     private Toast tust; //Toast to let user know event was successfully added
+
     private Intent movebackyes; //Moves user back to EventList if yes is clicked
     private Intent movebackno; //Moves user back to EventList if no is clicked
-    private String useremail = "'XIE_XIAO@bentley.edu'"; //Email/login of the current user
+    private Intent notifclicked; //Moves user to eventlist for new event
+
     private TextToSpeech speaker; // speaker for speaking event added
-    private static final String tag = "Speaking";
+
+    private NotificationManager notificationManager; // for notifications
+    private NotificationCompat.Builder notif;
 
 
     Handler infohandler = new Handler() { //Method which handles the messages sent
@@ -51,6 +65,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
                 tust.show(); //Show user the success toast
                 startActivity(movebackyes); //Move back to the main event list
                 speak(grabbedname + "added!");
+                notificationManager.notify(0, notif.build());
 
             }
         }
@@ -59,21 +74,31 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.finalcheck);
-
         //set up menu
         ActionBar actionBar = getActionBar();
         actionBar.show();
 
         Bundle extras = getIntent().getExtras(); //Grabbing from the EventList intent
         value = extras.getString("Switcher");
-
         //Format
         int locationofend = value.indexOf(":::"); //Using my ::: as a reference to determine the end of the name
         grabbedname = value.substring(0, locationofend); //Use the start of the String and the locationofend int to pull out the name
-
         PRIMARYKEY = value.substring(locationofend + 3, value.length()); //Use locationofend int and length of String to pull the PK
-
         tust = Toast.makeText(this, grabbedname + " added!", Toast.LENGTH_LONG); //Setting up the toast for later use
+
+
+        //notification
+        //to do - take you to personal instead of all the events
+        notifclicked = new Intent(this, EventList.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), notifclicked, 0);
+        notif  = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("New event added")
+                .setContentText(grabbedname)
+                .setContentIntent(pIntent)
+                .setAutoCancel(true);
+        //set up notification aspect
+        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         //Initializing and setting text to the text view
         tview = (TextView) findViewById(R.id.status);
@@ -92,6 +117,8 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
         //Initialize Text to Speech engine (context, listener object)
         speaker = new TextToSpeech(this, this);
+
+
 
         }
 // set up menu

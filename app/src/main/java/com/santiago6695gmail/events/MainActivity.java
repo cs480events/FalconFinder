@@ -68,7 +68,6 @@ public class MainActivity extends Activity implements OnClickListener {
     public void goUserEvents(MenuItem item) {
         Intent i = new Intent (this, UserEvents.class);
         startActivity(i);
-
     }
     // exit the app
     public void exit(MenuItem item) {
