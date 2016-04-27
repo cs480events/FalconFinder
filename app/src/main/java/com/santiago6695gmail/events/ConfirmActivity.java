@@ -143,10 +143,6 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
         startActivity(i);
 
     }
-    // go to settings
-    public void goSettings(MenuItem item) {
-        setContentView(R.layout.settings);
-    }
     // exit the app
     public void exit(MenuItem item) {
         System.exit(0);

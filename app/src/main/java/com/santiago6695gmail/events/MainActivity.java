@@ -70,10 +70,6 @@ public class MainActivity extends Activity implements OnClickListener {
         startActivity(i);
 
     }
-    // go to settings
-    public void goSettings(MenuItem item) {
-        setContentView(R.layout.settings);
-    }
     // exit the app
     public void exit(MenuItem item) {
         System.exit(0);

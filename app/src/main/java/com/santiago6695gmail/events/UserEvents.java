@@ -83,10 +83,6 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
         startActivity(i);
 
     }
-    // go to settings
-    public void goSettings(MenuItem item) {
-        setContentView(R.layout.settings);
-    }
     // exit the app
     public void exit(MenuItem item) {
         System.exit(0);
