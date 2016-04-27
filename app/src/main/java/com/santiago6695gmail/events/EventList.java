@@ -119,7 +119,7 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
 
                    try {
 
-                       ResultSet result = stmt.executeQuery("select * from cs460teamc.eventlist;"); //If it works, give us all of it!!!
+                       ResultSet result = stmt.executeQuery("SELECT * FROM cs460teamc.eventlist WHERE MONTH(DATE) = MONTH(now()) AND YEAR(DATE)=YEAR(now()) AND DAY(DATE)>=DAY(now()) AND EventID NOT IN (SELECT EVENT_ID FROM `cs460teamc`.User_event WHERE email ='XIE_XIAO@bentley.edu')"); //If it works, give us all of it!!!
 
                        while (result.next()) {
 

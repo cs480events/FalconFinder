@@ -28,6 +28,7 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
 
     private ListView lview; //For my list view widget
     private ArrayList<String> items; //An array list to hold all the list view items
+    private ArrayList<String> primarykeys; //Stores primary keys of all the user's events
     private ArrayAdapter<String> todoitems; //Array adapter for my list view
     private Thread thred = null; //Thread used for background task (JDBC)
     private ArrayList<String> itemswithID; //Second array list, to hold the names WITH id numbers as well
@@ -56,6 +57,7 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
         //Initializing the array lists
         items = new ArrayList<String>();
         itemswithID = new ArrayList<String>();
+        primarykeys = new ArrayList<String>();
 
         //Setting up the array adapter and attaching a style
         todoitems = new ArrayAdapter<String>(this, R.layout.mylist, items);
@@ -117,20 +119,15 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
 
             try {
 
-                ResultSet result = stmt.executeQuery("select EVENT_ID from cs460teamc.user_event where email = 'XIE_XIAO@bentley.edu';"); //If it works, give us all of it!!!
+                ResultSet result = stmt.executeQuery("SELECT SUMMARY, LOCATION, DATE, START_TIME, EVENTID FROM cs460teamc.eventlist WHERE EVENTID IN (SELECT EVENT_ID FROM cs460teamc.user_event WHERE email='XIE_XIAO@bentley.edu');"); //If it works, give us all of it!!!
 
                 while (result.next()) {
 
-                    String eID = result.getString("EVENT_ID"); //primary key, ABSOLUTELY NECCESARY
-
-                    ResultSet whatwewant = stmt.executeQuery("select * from cs460teamc.eventlist where EventID = " + eID + ";");
-
-                    while (whatwewant.next()) {
-                        String eventnames = whatwewant.getString("summary"); //event name
-                        String eventloc = whatwewant.getString("location"); //event location; MAKE IT SO NULL FIELDS ARENT BLANK
-                        String eventdate = whatwewant.getString("date"); //event date
-                        String eventtime = whatwewant.getString("start_time"); //event start time
-                        String eventID = whatwewant.getString("EventID"); //primary key, ABSOLUTELY NECCESARY
+                        String eventnames = result.getString("summary"); //event name
+                        String eventloc = result.getString("location"); //event location; MAKE IT SO NULL FIELDS ARENT BLANK
+                        String eventdate = result.getString("date"); //event date
+                        String eventtime = result.getString("start_time"); //event start time
+                        String eventID = result.getString("EventID"); //primary key, ABSOLUTELY NECCESARY
                         String finalevents = " " + eventnames + "  " + "\n" + "\n" + "\n" + "   " +
                                 eventloc + "    ||    " + eventdate + "    ||    " + eventtime + "\n"; //format for the user's pleasure
 
@@ -140,7 +137,7 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
                         itemswithID.add(thegoodstuff); //add this stuff to a separate array
                     }
 
-                }
+
 
 
 
