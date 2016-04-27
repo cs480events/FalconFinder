@@ -1,11 +1,14 @@
 package com.santiago6695gmail.events;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -51,6 +54,10 @@ public class ConfirmActivity extends Activity implements OnClickListener {
         super.onCreate(icicle);
         setContentView(R.layout.finalcheck);
 
+        //set up menu
+        ActionBar actionBar = getActionBar();
+        actionBar.show();
+
         Bundle extras = getIntent().getExtras(); //Grabbing from the EventList intent
         value = extras.getString("Switcher");
 
@@ -78,6 +85,31 @@ public class ConfirmActivity extends Activity implements OnClickListener {
         t = new Thread(background);
 
         }
+// set up menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    public void goCategory (MenuItem item) {
+        setContentView(R.layout.category_list);
+    }
+
+    // go to userevents
+    public void goUserEvents(MenuItem item) {
+        setContentView(R.layout.eventlist);
+        Intent i = new Intent (this, EventList.class);
+        startActivity(i);
+
+    }
+    // go to settings
+    public void goSettings(MenuItem item) {
+        setContentView(R.layout.settings);
+    }
+    // exit the app
+    public void exit(MenuItem item) {
+        System.exit(0);
+    }
 
 
     public void onClick(View v) { //Onclick listener

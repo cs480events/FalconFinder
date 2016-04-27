@@ -2,12 +2,15 @@ package com.santiago6695gmail.events;
 
 
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,8 +32,6 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
     private Thread thred = null; //Thread used for background task (JDBC)
     private ArrayList<String> itemswithID; //Second array list, to hold the names WITH id numbers as well
 
-
-
     Handler handler = new Handler() {
         public void handleMessage(Message msg) { //Method which handles the messages sent
             if (msg.obj.equals("IsDone")){ //Notify the array adapter that data is changed, if it gets the ok from my messenger
@@ -43,6 +44,10 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.eventlist);
+
+        //set up menu
+        ActionBar actionBar = getActionBar();
+        actionBar.show();
 
         //Setting up my list view
         lview = (ListView) findViewById(R.id.list);
@@ -59,6 +64,32 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
         //Begin background thread, so the events can be pulled from the database to the listview
         thred = new Thread(background);
         thred.start();
+    }
+
+    //inflate menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    public void goCategory (MenuItem item) {
+        setContentView(R.layout.category_list);
+    }
+
+    // go to userevents
+    public void goUserEvents(MenuItem item) {
+        setContentView(R.layout.eventlist);
+        Intent i = new Intent (this, EventList.class);
+        startActivity(i);
+
+    }
+    // go to settings
+    public void goSettings(MenuItem item) {
+        setContentView(R.layout.settings);
+    }
+    // exit the app
+    public void exit(MenuItem item) {
+        System.exit(0);
     }
 
 

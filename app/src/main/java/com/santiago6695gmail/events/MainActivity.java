@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -22,8 +23,6 @@ public class MainActivity extends Activity implements OnClickListener {
     private Thread t = null;
     private ArrayList<String> list = new ArrayList<String>();
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,19 +38,13 @@ public class MainActivity extends Activity implements OnClickListener {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 setContentView(R.layout.sign_up);
-
                 //start thread
                 t = new Thread(background);
                 t.start();
-
             }
         });
-
         Button switcheventbutton = (Button) findViewById(R.id.eventlistswitch);
         switcheventbutton.setOnClickListener(this);
-
-
-
     }
 
     @Override
@@ -59,13 +52,31 @@ public class MainActivity extends Activity implements OnClickListener {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+    //go to categories
+    public void goCategory (MenuItem item) {
+        setContentView(R.layout.category_list);
+    }
 
-    public void onClick(View v) {
-
+    // go to userevents
+    public void goUserEvents(MenuItem item) {
         setContentView(R.layout.eventlist);
         Intent i = new Intent (this, EventList.class);
         startActivity(i);
 
+    }
+    // go to settings
+    public void goSettings(MenuItem item) {
+        setContentView(R.layout.settings);
+    }
+    // exit the app
+    public void exit(MenuItem item) {
+        System.exit(0);
+    }
+
+    public void onClick(View v) {
+        setContentView(R.layout.eventlist);
+        Intent i = new Intent (this, EventList.class);
+        startActivity(i);
     }
 
 
