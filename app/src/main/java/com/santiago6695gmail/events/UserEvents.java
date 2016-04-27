@@ -121,25 +121,28 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
 
             try {
 
-                ResultSet result = stmt.executeQuery("select * from cs460teamc.user_event where email = XIE_XIAO@bentley.edu;"); //If it works, give us all of it!!!
+                ResultSet result = stmt.executeQuery("select EVENT_ID from cs460teamc.user_event where email = 'XIE_XIAO@bentley.edu';"); //If it works, give us all of it!!!
 
                 while (result.next()) {
 
-                    String eID = result.getString("EventID"); //primary key, ABSOLUTELY NECCESARY
+                    String eID = result.getString("EVENT_ID"); //primary key, ABSOLUTELY NECCESARY
+
                     ResultSet whatwewant = stmt.executeQuery("select * from cs460teamc.eventlist where EventID = " + eID + ";");
 
-                    String eventnames = whatwewant.getString("summary"); //event name
-                    String eventloc = whatwewant.getString("location"); //event location; MAKE IT SO NULL FIELDS ARENT BLANK
-                    String eventdate = whatwewant.getString("date"); //event date
-                    String eventtime = whatwewant.getString("start_time"); //event start time
-                    String eventID = whatwewant.getString("EventID"); //primary key, ABSOLUTELY NECCESARY
-                    String finalevents = " " + eventnames + "  " +  "\n" + "\n" + "\n" + "   " +
-                            eventloc + "    ||    " + eventdate + "    ||    " + eventtime + "\n"; //format for the user's pleasure
+                    while (whatwewant.next()) {
+                        String eventnames = whatwewant.getString("summary"); //event name
+                        String eventloc = whatwewant.getString("location"); //event location; MAKE IT SO NULL FIELDS ARENT BLANK
+                        String eventdate = whatwewant.getString("date"); //event date
+                        String eventtime = whatwewant.getString("start_time"); //event start time
+                        String eventID = whatwewant.getString("EventID"); //primary key, ABSOLUTELY NECCESARY
+                        String finalevents = " " + eventnames + "  " + "\n" + "\n" + "\n" + "   " +
+                                eventloc + "    ||    " + eventdate + "    ||    " + eventtime + "\n"; //format for the user's pleasure
 
-                    items.add(finalevents); //add the formatted string to the list view
+                        items.add(finalevents); //add the formatted string to the list view
 
-                    String thegoodstuff = eventnames + ":::" + eventID; //the stuff WE actually care about: name and PK
-                    itemswithID.add(thegoodstuff); //add this stuff to a separate array
+                        String thegoodstuff = eventnames + ":::" + eventID; //the stuff WE actually care about: name and PK
+                        itemswithID.add(thegoodstuff); //add this stuff to a separate array
+                    }
 
                 }
 
