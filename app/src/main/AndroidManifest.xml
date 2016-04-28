@@ -17,10 +17,11 @@
             </intent-filter>
         </activity>
 
-    <activity android:name=".EventList" />
+        <activity android:name=".EventList" />
         <activity android:name=".ConfirmActivity" />
         <activity android:name=".UserEvents" />
         <activity android:name=".DeleteActivity" />
+        <activity android:name=".Category" />
     </application>
 
 </manifest>
