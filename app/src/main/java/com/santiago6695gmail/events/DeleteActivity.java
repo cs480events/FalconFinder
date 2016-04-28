@@ -1,9 +1,9 @@
 package com.santiago6695gmail.events;
 
+
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -16,22 +16,17 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.View.OnClickListener;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Locale;
 
-public class ConfirmActivity extends Activity implements OnClickListener, TextToSpeech.OnInitListener {
+
+public class DeleteActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener {
 
     private Button yesbutton; //Button for if user clicks yes
     private Button nobutton; //Button for if user clicks no
@@ -64,7 +59,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
                 tust.show(); //Show user the success toast
                 startActivity(movebackyes); //Move back to the main event list
-                //speak(grabbedname + "added!");
+               // speak(grabbedname + "deleted!");
                 notificationManager.notify(0, notif.build());
 
             }
@@ -73,18 +68,20 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        setContentView(R.layout.finalcheck);
+        setContentView(R.layout.deletecheck);
+
         //set up menu
         ActionBar actionBar = getActionBar();
         actionBar.show();
 
         Bundle extras = getIntent().getExtras(); //Grabbing from the EventList intent
-        value = extras.getString("Switcher");
+        value = extras.getString("The Deleta");
+
         //Format
         int locationofend = value.indexOf(":::"); //Using my ::: as a reference to determine the end of the name
         grabbedname = value.substring(0, locationofend); //Use the start of the String and the locationofend int to pull out the name
         PRIMARYKEY = value.substring(locationofend + 3, value.length()); //Use locationofend int and length of String to pull the PK
-        tust = Toast.makeText(this, grabbedname + " added!", Toast.LENGTH_LONG); //Setting up the toast for later use
+        tust = Toast.makeText(this, grabbedname + " deleted!", Toast.LENGTH_LONG); //Setting up the toast for later use
 
 
         //notification
@@ -93,7 +90,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
         PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), notifclicked, 0);
         notif  = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("New event added")
+                .setContentTitle("New event deleted")
                 .setContentText(grabbedname)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true);
@@ -102,7 +99,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
         //Initializing and setting text to the text view
         tview = (TextView) findViewById(R.id.status);
-        tview.setText("Add " + grabbedname + " to your events?");
+        tview.setText("Delete " + grabbedname + " from your events?");
 
         //Initializing yes button
         yesbutton = (Button) findViewById(R.id.yesbutton);
@@ -120,8 +117,8 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
 
 
-        }
-// set up menu
+    }
+    // set up menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -156,7 +153,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
         }
         else
-        speaker.speak(output, TextToSpeech.QUEUE_FLUSH, null, "Id 0");
+            speaker.speak(output, TextToSpeech.QUEUE_FLUSH, null, "Id 0");
     } */
 
     public void onInit(int status) {
@@ -188,7 +185,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
             case R.id.yesbutton: //for yes
 
-                movebackyes = new Intent(this, EventList.class); //Intent set up
+                movebackyes = new Intent(this, UserEvents.class); //Intent set up
                 t.start(); //Start the background thread
                 yesbutton.setVisibility(View.GONE); //Hide the buttons so user can't crash the program
                 nobutton.setVisibility(View.GONE);
@@ -196,7 +193,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
                 break;
 
             case R.id.nobutton:
-                movebackno = new Intent(this, EventList.class); //intent set up AND fired off
+                movebackno = new Intent(this, UserEvents.class); //intent set up AND fired off
                 startActivity(movebackno);
                 break;
         }
@@ -232,9 +229,8 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
             try {
                 // execute SQL commands to create table, insert data, select contents
-
-                Log.w("IMTOM", "insert into user_event values(null, " + useremail + ", " + PRIMARYKEY + ");");
-                stmt.executeUpdate("insert into user_event values(null, " + useremail + ", " + PRIMARYKEY + ");");
+                Log.e("HEYO", "delete from user_event where email = " + useremail + " AND EVENT_ID = " + PRIMARYKEY + ";");
+                stmt.executeUpdate("delete from user_event where email = " + useremail + " AND EVENT_ID = " + PRIMARYKEY + ";");
 
 
 
@@ -259,6 +255,3 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
 
 }
-
-
-

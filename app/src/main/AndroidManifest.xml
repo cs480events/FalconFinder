@@ -20,6 +20,7 @@
     <activity android:name=".EventList" />
         <activity android:name=".ConfirmActivity" />
         <activity android:name=".UserEvents" />
+        <activity android:name=".DeleteActivity" />
     </application>
 
 </manifest>

@@ -130,6 +130,12 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
 
                         String eventnames = result.getString("summary"); //event name
                         String eventloc = result.getString("location"); //event location; MAKE IT SO NULL FIELDS ARENT BLANK
+                        if (eventloc == null ){
+                            eventloc = "Dana Center";
+                             }
+                        else if(eventloc.equals("") ){
+                             eventloc = "Dana Center";
+                            }
                         String eventdate = result.getString("date"); //event date
                         String eventtime = result.getString("start_time"); //event start time
                         String eventID = result.getString("EventID"); //primary key, ABSOLUTELY NECCESARY
@@ -167,7 +173,7 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
 
         String snagger = itemswithID.get(position); //We're actually grabbing from our second array that user DOES NOT see
 
-        Intent i = new Intent(this, ConfirmActivity.class); //Intent to move us to the confirmation
+        Intent i = new Intent(this, DeleteActivity.class); //Intent to move us to the confirmation
         i.putExtra("The Deleta", snagger); //Store the name and primary key of the event selected
         startActivity(i);
     }
