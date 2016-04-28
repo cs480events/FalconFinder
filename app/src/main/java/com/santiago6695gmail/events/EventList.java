@@ -89,12 +89,7 @@ public class    EventList extends Activity implements AdapterView.OnItemClickLis
         Intent i = new Intent (this, UserEvents.class);
         startActivity(i);
     }
-    //go all events
-    public void goAllEvents(MenuItem item) {
-        setContentView(R.layout.eventlist);
-        Intent i = new Intent (this, EventList.class);
-        startActivity(i);
-    }
+
     // exit the app
     public void exit(MenuItem item) {
         System.exit(0);

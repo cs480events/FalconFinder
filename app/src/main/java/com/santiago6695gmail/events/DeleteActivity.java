@@ -120,6 +120,8 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
 
     public void goCategory (MenuItem item) {
         setContentView(R.layout.category_list);
+        Intent i = new Intent(this, Category.class);
+        startActivity(i);
     }
 
     // go to userevents
@@ -128,12 +130,7 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
         Intent i = new Intent (this, UserEvents.class);
         startActivity(i);
     }
-    //go all events
-    public void goAllEvents(MenuItem item) {
-        setContentView(R.layout.eventlist);
-        Intent i = new Intent (this, EventList.class);
-        startActivity(i);
-    }
+
     // exit the app
     public void exit(MenuItem item) {
         System.exit(0);
