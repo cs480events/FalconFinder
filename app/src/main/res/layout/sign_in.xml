@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/myRelativeLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue">
 
     <TextView
         android:id="@+id/slogan"
@@ -60,43 +61,36 @@
         android:text="@string/log_in"
         style="@style/buttonStyle"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/email"
-        android:layout_toEndOf="@+id/email" />
+        android:layout_alignLeft="@+id/enterEmail"
+        android:layout_alignStart="@+id/enterEmail"
+        android:layout_width="wrap_content" />
 
     <Button
         android:id="@+id/signup"
         android:text="@string/sign_up"
         style="@style/buttonStyle"
-        android:layout_below="@+id/password"
-        android:layout_toRightOf="@+id/eventlistswitch"
-        android:layout_toEndOf="@+id/eventlistswitch" />
+        android:layout_alignTop="@+id/signin"
+        android:layout_toRightOf="@+id/log_in_web"
+        android:layout_width="wrap_content" />
 
-    <Button
-        android:id="@+id/eventlistswitch"
-        android:text="@string/push_me"
-        style="@style/buttonStyle"
-        android:layout_below="@+id/signin"
-        android:layout_toRightOf="@+id/signin"
-        android:layout_toEndOf="@+id/signin"
-        android:layout_marginTop="60dp" />
     <Button
         android:id="@+id/log_in_web"
         android:text="@string/log_in_online"
         style="@style/buttonStyle"
-        android:layout_below="@+id/signin"
-        android:layout_toRightOf="@+id/eventlistswitch"
-        android:layout_marginTop="60dp" />
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="51dp"
+        android:layout_above="@+id/dialerbutt"
+        android:layout_centerHorizontal="true"
+        android:gravity="center" />
 
     <Button
         android:id="@+id/dialerbutt"
         android:text="Call Admin"
         style="@style/buttonStyle"
         android:color="#de0909"
+        android:layout_width="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/log_in_web"
-        android:layout_alignEnd="@+id/log_in_web"
-        android:layout_toRightOf="@+id/password"
-        android:layout_toEndOf="@+id/password" />
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
