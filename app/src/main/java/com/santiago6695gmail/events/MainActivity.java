@@ -6,28 +6,41 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import android.view.View.OnClickListener;
-import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnClickListener {
+
+    private EditText emailField;
+    private EditText passwordField;
+    private Button signUpButton;
+    private Button signInButton;
+    private TextView userEmail;
+    private TextView userPassword;
+    public Intent i;
 
     private Thread t = null;
     private ArrayList<String> list = new ArrayList<String>();
     private TextView slogan = null;
     private Button webLogIn;
+
+    private String password;
+    private static final String tag = "Usernames: ";
+
+    public boolean flag = false;
+    String testingUser;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +61,18 @@ public class MainActivity extends Activity implements OnClickListener {
         slogan.startAnimation(in);
         slogan.setText("Find all events on campus!");
 
+        emailField = (EditText) findViewById(R.id.enterEmail);
+        passwordField = (EditText) findViewById(R.id.enterPassword);
+
+        userEmail = (TextView) findViewById(R.id.email);
+        userPassword = (TextView) findViewById(R.id.password);
+
+        signUpButton = (Button) findViewById(R.id.signup);
+        signUpButton.setOnClickListener(this);
+
+        signInButton = (Button) findViewById(R.id.signin);
+        signInButton.setOnClickListener(this);
+
         Button signUpButton = (Button) findViewById(R.id.signup);
         signUpButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -57,6 +82,10 @@ public class MainActivity extends Activity implements OnClickListener {
                 t.start();
             }
         });
+
+        i = new Intent (this, Category.class);
+
+
         Button switcheventbutton = (Button) findViewById(R.id.eventlistswitch);
         switcheventbutton.setOnClickListener(this);
         webLogIn = (Button) findViewById(R.id.log_in_web);
@@ -74,60 +103,100 @@ public class MainActivity extends Activity implements OnClickListener {
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
     }
-    public void onClick(View v) {
-        Intent i = new Intent (this, Category.class);
-        startActivity(i);
-    }
 
+    public void onClick(View v)
+    {
+        switch (v.getId()) {
 
+            case R.id.signup:
+            {
+                setContentView(R.layout.sign_up);
+//                Intent i1 = new Intent(this, SignUp.class);
+//                startActivity(i1);
+                break;
 
-    private Runnable background = new Runnable() {
-    public void run(){
-        String URL = "jdbc:mysql://frodo.bentley.edu:3306/CS460Teamc";
-        String username = "cs460teamc";
-        String password = "cs460teamc";
-
-        try { //load driver into VM memory
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            Log.e("JDBC", "Did not load driver");
-
-        }
-
-        Statement stmt = null;
-        Connection con=null;
-        try { //create connection and statement objects
-            con = DriverManager.getConnection(
-                    URL,
-                    username,
-                    password);
-            stmt = con.createStatement();
-        } catch (SQLException e) {
-            Log.e("JDBC", "problem connecting");
-        }
-
-        try {
-            ResultSet result = stmt.executeQuery("select * from cs460teamc.eventlist;");
-
-            //read result set, write data to ArrayList and Log
-            while (result.next()) {
-                String city = result.getString("summary");
-                Log.e("JDBC",city );
             }
-            //clean up
-            t = null;
+            case R.id.signin:
+            {
+                t = new Thread(background);
+                t.start();
+            }
 
-
-        } catch (SQLException e) {
-            Log.e("JDBC","problems with SQL sent to "+URL+
-                    ": "+e.getMessage());
         }
-        catch (NullPointerException e) {
-            Log.e("NULL", "some other null pointer error");
-        }
-
     }
-};
 
+
+    private Runnable background = new Runnable()
+    {
+        public void run(){
+            String URL = "jdbc:mysql://frodo.bentley.edu:3306/CS460Teamc";
+            String username = "cs460teamc";
+            String password = "cs460teamc";
+
+            try { //load driver into VM memory
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                Log.e("JDBC", "Did not load driver");
+            }
+
+            Statement stmt = null;
+            Connection con=null;
+            try { //create connection and statement objects
+                con = DriverManager.getConnection(
+                        URL,
+                        username,
+                        password);
+                stmt = con.createStatement();
+            } catch (SQLException e) {
+                Log.e("JDBC", "problem connecting");
+            }
+
+            try {
+                String testing = emailField.getText().toString().trim();
+                //String mysql = "select password from cs460teamc.user WHERE email ="+testing +")";
+                //Log.e("Hey", mysql);
+//                ResultSet result = stmt.executeQuery(mysql);
+//                ResultSet result = stmt.executeQuery("select password from cs460teamc.user WHERE email = 'XIE_XIAO@bentley.edu';");
+
+                ResultSet result = stmt.executeQuery("select password from cs460teamc.user WHERE email = '"+emailField.getText().toString().trim()+"';");
+                while (result.next())
+                {
+                    //Read all usernames into one string
+
+                    password = result.getString("password");
+                    Log.e("pass",password);
+                }
+                char[] ePassword = password.toCharArray();
+                ePassword[2] = 'a';
+                password = String.valueOf(ePassword);
+
+                if(BCrypt.checkpw(passwordField.getText().toString().trim(), password))
+                {
+                    Log.e("M", "True");
+                    startActivity(i);
+                }
+                else
+                {
+                    Log.e("M","False");
+                }
+                Log.e("JDBC TEST", password);
+
+                //clean up
+                //t = null;
+            } catch (SQLException e) {
+                Log.e("JDBC","problems with SQL sent to "+URL+
+                        ": "+e.getMessage());
+            }finally {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    Log.e("JDBC","problems with SQL sent to "+URL+
+                            ": "+e.getMessage());
+                }
+
+            }
+
+        }
+    };
 }
 
