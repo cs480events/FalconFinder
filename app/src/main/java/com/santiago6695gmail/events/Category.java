@@ -58,21 +58,21 @@ public class Category extends Activity implements View.OnClickListener {
 
             case R.id.Sports: {
                 Intent a = new Intent(this,EventList.class);
-                a.putExtra("Category", "SELECT * FROM cs460teamc.eventlist WHERE CATEGORY = 'ATHLETICS' AND MONTH(DATE) = MONTH(now()) AND YEAR(DATE)=YEAR(now()) AND DAY(DATE)>=DAY(now()) AND EventID NOT IN (SELECT EVENT_ID FROM cs460teamc.User_event WHERE email ='XIE_XIAO@bentley.edu');");
+                a.putExtra("Category", "SELECT * FROM cs460teamc.eventlist WHERE CATEGORY = 'ATHLETICS' AND EventID NOT IN (SELECT EVENT_ID FROM cs460teamc.User_event WHERE email ='XIE_XIAO@bentley.edu');");
                 startActivity(a);
                 break;
             }
 
             case R.id.Career_Service:{
                 Intent b = new Intent(this,EventList.class);
-                b.putExtra("Category", "SELECT * FROM cs460teamc.eventlist WHERE CATEGORY = 'CAREERS' AND MONTH(DATE) = MONTH(now()) AND YEAR(DATE)=YEAR(now()) AND DAY(DATE)>=DAY(now()) AND EventID NOT IN (SELECT EVENT_ID FROM cs460teamc.User_event WHERE email ='XIE_XIAO@bentley.edu');");
+                b.putExtra("Category", "SELECT * FROM cs460teamc.eventlist WHERE CATEGORY = 'CAREERS' AND EventID NOT IN (SELECT EVENT_ID FROM cs460teamc.User_event WHERE email ='XIE_XIAO@bentley.edu');");
                 startActivity(b);
                 break;
             }
 
             case R.id.Other:{
                 Intent c = new Intent(this,EventList.class);
-                c.putExtra("Category", "SELECT * FROM cs460teamc.eventlist WHERE CATEGORY != 'ATHLETICS' AND 'CAREERS' AND MONTH(DATE) = MONTH(now()) AND YEAR(DATE)=YEAR(now()) AND DAY(DATE)>=DAY(now()) AND EventID NOT IN (SELECT EVENT_ID FROM cs460teamc.User_event WHERE email ='XIE_XIAO@bentley.edu');" );
+                c.putExtra("Category", "SELECT * FROM cs460teamc.eventlist WHERE CATEGORY != 'ATHLETICS' AND CATEGORY != 'CAREERS' AND EventID NOT IN (SELECT EVENT_ID FROM cs460teamc.User_event WHERE email ='XIE_XIAO@bentley.edu');" );
                         startActivity(c);
                 break;
             }
