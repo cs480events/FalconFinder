@@ -56,7 +56,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
                 tust.show(); //Show user the success toast
                 startActivity(movebackyes); //Move back to the main event list
-                //speak(grabbedname + "added!");
+                speak(grabbedname + "added!");
                 notificationManager.notify(0, notif.build());
 
             }
@@ -144,7 +144,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
         System.exit(0);
     }
 
-  /*  @TargetApi(21)
+    @TargetApi(21)
     public void speak(String output){
         if(output.equals(null))
         {
@@ -152,7 +152,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
         }
         else
         speaker.speak(output, TextToSpeech.QUEUE_FLUSH, null, "Id 0");
-    } */
+    }
 
     //For text to speech
     public void onInit(int status) {
