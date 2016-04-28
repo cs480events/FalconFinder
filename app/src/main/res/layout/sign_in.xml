@@ -60,18 +60,9 @@
         android:id="@+id/signin"
         android:text="@string/log_in"
         style="@style/buttonStyle"
+        android:layout_width="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/enterEmail"
-        android:layout_alignStart="@+id/enterEmail"
-        android:layout_width="wrap_content" />
-
-    <Button
-        android:id="@+id/signup"
-        android:text="@string/sign_up"
-        style="@style/buttonStyle"
-        android:layout_alignTop="@+id/signin"
-        android:layout_toRightOf="@+id/log_in_web"
-        android:layout_width="wrap_content" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/log_in_web"

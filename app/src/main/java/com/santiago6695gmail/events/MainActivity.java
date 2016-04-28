@@ -24,8 +24,8 @@ import java.util.ArrayList;
 public class MainActivity extends Activity implements OnClickListener {
 
     public static EditText emailField;
+    public static String emailFieldString = "lol";
     private EditText passwordField;
-    private Button signUpButton;
     private Button signInButton;
     private TextView userEmail;
     private TextView userPassword;
@@ -41,6 +41,7 @@ public class MainActivity extends Activity implements OnClickListener {
     private static final String tag = "Usernames: ";
 
     public boolean flag = false;
+    public String email;
     String testingUser;
 
     @Override
@@ -68,9 +69,6 @@ public class MainActivity extends Activity implements OnClickListener {
         userEmail = (TextView) findViewById(R.id.email);
         userPassword = (TextView) findViewById(R.id.password);
 
-        signUpButton = (Button) findViewById(R.id.signup);
-        signUpButton.setOnClickListener(this);
-
         signInButton = (Button) findViewById(R.id.signin);
         signInButton.setOnClickListener(this);
 
@@ -86,15 +84,6 @@ public class MainActivity extends Activity implements OnClickListener {
         });
 
 
-        Button signUpButton = (Button) findViewById(R.id.signup);
-        signUpButton.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                setContentView(R.layout.sign_up);
-                //start thread
-                t = new Thread(background);
-                t.start();
-            }
-        });
 
         i = new Intent (this, Category.class);
 
@@ -119,24 +108,16 @@ public class MainActivity extends Activity implements OnClickListener {
     {
         switch (v.getId()) {
 
-            case R.id.signup:
-            {
-                setContentView(R.layout.sign_up);
-//                Intent i1 = new Intent(this, SignUp.class);
-//                startActivity(i1);
-                break;
-
-            }
             case R.id.signin:
             {
+                emailFieldString = emailField.getText().toString();
+                Log.e("Checking",emailFieldString);
                 t = new Thread(background);
                 t.start();
             }
 
         }
     }
-
-
     private Runnable background = new Runnable()
     {
         public void run(){
@@ -163,13 +144,14 @@ public class MainActivity extends Activity implements OnClickListener {
             }
 
             try {
-                String testing = emailField.getText().toString().trim();
                 //String mysql = "select password from cs460teamc.user WHERE email ="+testing +")";
                 //Log.e("Hey", mysql);
 //                ResultSet result = stmt.executeQuery(mysql);
 //                ResultSet result = stmt.executeQuery("select password from cs460teamc.user WHERE email = 'XIE_XIAO@bentley.edu';");
 
-                ResultSet result = stmt.executeQuery("select password from cs460teamc.user WHERE email = '"+emailField.getText().toString().trim()+"';");
+                ResultSet result = stmt.executeQuery("select password from cs460teamc.user WHERE email = '"+emailFieldString.trim()+"';");
+                Log.e("LOGGINGIN",emailFieldString);
+                email = emailFieldString;
                 while (result.next())
                 {
                     //Read all usernames into one string

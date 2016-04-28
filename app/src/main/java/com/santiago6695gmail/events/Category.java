@@ -19,8 +19,8 @@ public class Category extends Activity implements View.OnClickListener {
     private Button athleticbutton;
     private Button careerbutton;
     private Button otherbutton;
-    private String dumy = MainActivity.emailField.getText().toString().trim();
-    private String useremail = "'"+dumy+"'";
+    public  String dumy = "";
+    public  String useremail = "'" + dumy +"'";
 
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -50,7 +50,7 @@ public class Category extends Activity implements View.OnClickListener {
         switch(v.getId()) {
             case R.id.all: {
                 Intent i = new Intent(this,EventList.class);
-                i.putExtra("Category", "SELECT * FROM cs460teamc.eventlist WHERE MONTH(DATE) = MONTH(now()) AND YEAR(DATE)=YEAR(now()) AND DAY(DATE)>=DAY(now()) AND EventID NOT IN (SELECT EVENT_ID FROM cs460teamc.User_event WHERE email ='XIE_XIAO@bentley.edu');");
+                i.putExtra("Category", "SELECT * FROM cs460teamc.eventlist WHERE MONTH(DATE) = MONTH(now()) AND YEAR(DATE)=YEAR(now()) AND DAY(DATE)>=DAY(now()) AND EventID NOT IN (SELECT EVENT_ID FROM cs460teamc.User_event WHERE email =" + useremail + ");");
                 startActivity(i);
                 break;
             }

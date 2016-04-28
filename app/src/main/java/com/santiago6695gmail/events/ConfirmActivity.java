@@ -33,7 +33,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
     private String value =""; //String to hold initial String passed via intent
     private String grabbedname =""; //Grabbing only the name from the string
     private String PRIMARYKEY =""; //Grabbing only the PK from the string
-    private String dumy = MainActivity.emailField.getText().toString().trim();
+    private String dumy = MainActivity.emailFieldString.trim();
     private String useremail = "'"+dumy+"'";
     private static final String tag = "Speaking";
     private TextView tview; //Text view widget
@@ -174,7 +174,6 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
                 t.start(); //Start the background thread
                 yesbutton.setVisibility(View.GONE); //Hide the buttons so user can't crash the program
                 nobutton.setVisibility(View.GONE);
-
                 break;
 
             case R.id.nobutton:
@@ -211,6 +210,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
             try {
                 // execute SQL commands to create table, insert data, select contents
                 stmt.executeUpdate("insert into user_event values(null, " + useremail + ", " + PRIMARYKEY + ");");
+                Log.e("CheckingSQL", "stmt.executeUpdate(insert into user_event values(null, " + useremail + ", " + PRIMARYKEY + ");");
 
                 con.close();
 

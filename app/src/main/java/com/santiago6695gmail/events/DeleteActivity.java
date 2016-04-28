@@ -33,8 +33,8 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
     private String value; //String to hold initial String passed via intent
     private String grabbedname ="blank"; //Grabbing only the name from the string
     private String PRIMARYKEY; //Grabbing only the PK from the string
-    private String dumy = MainActivity.emailField.getText().toString().trim();
-    private String useremail = "'"+dumy+"'";
+    private String dumy = MainActivity.emailFieldString.trim();
+    private String useremail = dumy;
     private static final String tag = "Speaking";
     private TextView tview; //Text view widget
     private Thread t = null; //Background thread for running JDBC
