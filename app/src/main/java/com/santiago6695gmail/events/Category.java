@@ -51,29 +51,29 @@ public class Category extends Activity implements View.OnClickListener {
         switch(v.getId()) {
             case R.id.all: {
                 Intent i = new Intent(this,EventList.class);
-                i.putExtra("Category", "");
+                i.putExtra("Category", "SELECT * FROM cs460teamc.eventlist WHERE MONTH(DATE) = MONTH(now()) AND YEAR(DATE)=YEAR(now()) AND DAY(DATE)>=DAY(now()) AND EventID NOT IN (SELECT EVENT_ID FROM cs460teamc.User_event WHERE email ='XIE_XIAO@bentley.edu')");
                 startActivity(i);
                 break;
             }
 
             case R.id.Sports: {
                 Intent a = new Intent(this,EventList.class);
-                a.putExtra("Category", "Category = 'Athletics' AND ");
+                a.putExtra("Category", "SELECT * FROM cs460teamc.eventlist WHERE CATEGORY = 'ATHLETICS' AND MONTH(DATE) = MONTH(now()) AND YEAR(DATE)=YEAR(now()) AND DAY(DATE)>=DAY(now()) AND EventID NOT IN (SELECT EVENT_ID FROM cs460teamc.User_event WHERE email ='XIE_XIAO@bentley.edu')");
                 startActivity(a);
                 break;
             }
 
             case R.id.Career_Service:{
                 Intent b = new Intent(this,EventList.class);
-                b.putExtra("Category", "Category = 'Careers' AND ");
+                b.putExtra("Category", "SELECT * FROM cs460teamc.eventlist WHERE CATEGORY = 'CAREERS' AND MONTH(DATE) = MONTH(now()) AND YEAR(DATE)=YEAR(now()) AND DAY(DATE)>=DAY(now()) AND EventID NOT IN (SELECT EVENT_ID FROM cs460teamc.User_event WHERE email ='XIE_XIAO@bentley.edu')");
                 startActivity(b);
                 break;
             }
 
             case R.id.Other:{
                 Intent c = new Intent(this,EventList.class);
-                c.putExtra("Category", "Ya done goofed");
-                startActivity(c);
+                c.putExtra("Category", "SELECT * FROM cs460teamc.eventlist WHERE CATEGORY != 'ATHLETICS' AND 'CAREERS' AND MONTH(DATE) = MONTH(now()) AND YEAR(DATE)=YEAR(now()) AND DAY(DATE)>=DAY(now()) AND EventID NOT IN (SELECT EVENT_ID FROM cs460teamc.User_event WHERE email ='XIE_XIAO@bentley.edu')" );
+                        startActivity(c);
                 break;
             }
         }
