@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,10 +21,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Locale;
 
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends Activity implements OnClickListener, TextToSpeech.OnInitListener {
 
- //   public static String emailFieldString = "marat_dula@bentley.edu";// hardcoded string until global variable works
     public static EditText emailField; // where user enters email
     public static String emailFieldString;// testing global variable
     public static String useremail;
@@ -33,15 +34,14 @@ public class MainActivity extends Activity implements OnClickListener {
     private TextView userEmail; // text view of user email
     private TextView userPassword; // text view of user password
     private Intent i;
-
     private Thread t = null; //variable for thread
     private TextView slogan = null; // Textview for slogan animal
     private Button webLogIn; // web login button
     private Button admindial; // dialer button to call
-
     private String password; // string to hold the password
     private static final String tag = "Usernames: "; // unviversal tag to check usernames
     public String email; // using to store the email of the user as a string
+    private TextToSpeech speaker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +62,10 @@ public class MainActivity extends Activity implements OnClickListener {
         slogan.startAnimation(in);
         slogan.setText("Find all events on campus!");
 
+        //Initialize Text to Speech engine
+        speaker = new TextToSpeech(this, this);{
+        }
+
 
         // setting up the text view and edit text views for user to enter
         emailField = (EditText) findViewById(R.id.enterEmail);
@@ -77,6 +81,8 @@ public class MainActivity extends Activity implements OnClickListener {
         admindial.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
 
                 // dialer to call a cell phone for our teammate
                 Uri dialuri = Uri.parse("tel:6039217921");
@@ -100,6 +106,23 @@ public class MainActivity extends Activity implements OnClickListener {
 
 
     }
+
+    public void onInit(int status) { //Required method
+
+        if (status == TextToSpeech.SUCCESS) {
+            int result = speaker.setLanguage(Locale.US); //sets language to English
+            if (result == TextToSpeech.LANG_MISSING_DATA ||
+                    result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.e("WARNING", "Language is not available."); //If user is using a non-supported language
+            }
+        }}
+
+    //speaks the contents of output
+    public void speak(String output){
+        speaker.speak(output, TextToSpeech.QUEUE_FLUSH, null);
+    }
+
+
     //opeing browser intent
     public void openBrowser() {
         Uri uri = Uri.parse("http://frodo.bentley.edu/CS460Teamc");
@@ -167,6 +190,8 @@ public class MainActivity extends Activity implements OnClickListener {
                 if(BCrypt.checkpw(passwordField.getText().toString().trim(), password)) // if the encrypted password from database equals the encyrpted password of user
                 {
                     Log.e("M", "True"); // if the password match log it and start activity
+                    //Initialize Text to Speech engine
+                    speak ("Login   Successful");
                     startActivity(i);
                 }
                 else

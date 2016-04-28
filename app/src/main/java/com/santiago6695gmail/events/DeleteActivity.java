@@ -44,6 +44,7 @@ public class DeleteActivity extends Activity implements View.OnClickListener {
     private NotificationCompat.Builder notif; //For notification
 
 
+
     Handler infohandler = new Handler() { //Method which handles the messages sent
         public void handleMessage(Message msg) {
             if (msg.obj.equals("IsReallyDone")){ //If message is successfully received...
@@ -105,10 +106,14 @@ public class DeleteActivity extends Activity implements View.OnClickListener {
         nobutton = (Button) findViewById(R.id.nobutton);
         nobutton.setOnClickListener(this);
 
+
+
         //Setting t to the background runnable, to be used when we are ready
         t = new Thread(background);
 
     }
+
+
 
 
     // set up menu
