@@ -33,8 +33,6 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
     private String value; //String to hold initial String passed via intent
     private String grabbedname ="blank"; //Grabbing only the name from the string
     private String PRIMARYKEY; //Grabbing only the PK from the string
-    private String dumy = MainActivity.emailFieldString.trim(); //Holds Dulat's email from the main activity
-    private String useremail = dumy; //formatted dumy
     private static final String tag = "Speaking";
     private TextView tview; //Text view widget
     private Thread t = null; //Background thread for running JDBC
@@ -73,8 +71,8 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
             Log.e("Error","Action Bar failed");
         }
 
-        Bundle extras = getIntent().getExtras(); //Grabbing from the UserEvent intent
-        value = extras.getString("The Deleta");
+        Bundle megas = getIntent().getExtras(); //Grabbing from the UserEvent intent
+        value = megas.getString("The Deleta");
 
         //Format
         int locationofend = value.indexOf(":::"); //Using my ::: as a reference to determine the end of the name
@@ -125,14 +123,14 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
     }
 
     public void goCategory (MenuItem item) {
-        setContentView(R.layout.category_list);
+
         Intent i = new Intent(this, Category.class);
         startActivity(i);
     }
 
     // go to userevents
     public void goUserEvents(MenuItem item) {
-        setContentView(R.layout.userlist);
+
         Intent i = new Intent (this, UserEvents.class);
         startActivity(i);
     }
@@ -182,7 +180,7 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
 
             case R.id.yesbutton: //for yes
 
-                movebackyes = new Intent(this, UserEvents.class); //Intent set up
+                movebackyes = new Intent(this, Category.class); //Intent set up
                 t.start(); //Start the background thread
                 yesbutton.setVisibility(View.GONE); //Hide the buttons so user can't crash the program
                 nobutton.setVisibility(View.GONE);
@@ -190,7 +188,7 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
                 break;
 
             case R.id.nobutton:
-                movebackno = new Intent(this, UserEvents.class); //intent set up AND fired off
+                movebackno = new Intent(this, Category.class); //intent set up AND fired off
                 startActivity(movebackno);
                 break;
         }
@@ -224,9 +222,9 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
 
             try {
                 // execute SQL commands to delete from the user's event list
-                Log.e("Delete email", useremail);
+                //Log.e("Delete email", useremail);
 
-                stmt.executeUpdate("delete from user_event where email ='" + useremail + "' AND EVENT_ID = " + PRIMARYKEY + ";");
+                stmt.executeUpdate("delete from user_event where email =" + MainActivity.useremail + " AND EVENT_ID = " + PRIMARYKEY + ";");
 
                 con.close();
 

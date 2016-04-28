@@ -32,8 +32,6 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
     private ArrayAdapter<String> todoitems; //Array adapter for my list view
     private Thread thred = null; //Thread used for background task (JDBC)
     private ArrayList<String> itemswithID; //Second array list, to hold the names WITH id numbers as well
-    private String dumy = MainActivity.emailFieldString.trim(); //Grabs dulat's email from the Main Activity
-    private String useremail = "'"+dumy +"'"; //Formats dumy
 
     Handler handler = new Handler() {
         public void handleMessage(Message msg) { //Method which handles the messages sent
@@ -77,20 +75,20 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
         return true;
     }
     public void goCategory (MenuItem item) {
-        setContentView(R.layout.category_list);
+
         Intent i = new Intent(this, Category.class);
         startActivity(i);
     }
 
     // go to userevents
     public void goUserEvents(MenuItem item) {
-        setContentView(R.layout.userlist);
+
         Intent i = new Intent (this, UserEvents.class);
         startActivity(i);
     }
     //go all events
     public void goAllEvents(MenuItem item) {
-        setContentView(R.layout.eventlist);
+
         Intent i = new Intent (this, EventList.class);
         startActivity(i);
     }
@@ -130,10 +128,10 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
 
                 ResultSet result = stmt.executeQuery(
                         "SELECT SUMMARY, LOCATION, DATE, START_TIME, EVENTID FROM cs460teamc.eventlist WHERE " +
-                                "EVENTID IN (SELECT EVENT_ID FROM cs460teamc.user_event WHERE email=" + useremail + ");"); //Very long SQL query to grab all the info for each event user is registered for
-                    Log.e("Useremail",useremail);
+                                "EVENTID IN (SELECT EVENT_ID FROM cs460teamc.user_event WHERE email=" + MainActivity.useremail + ");"); //Very long SQL query to grab all the info for each event user is registered for
+                 //   Log.e("Useremail",MainActivity.useremail);
                 Log.e("Fuck", "SELECT SUMMARY, LOCATION, DATE, START_TIME, EVENTID FROM cs460teamc.eventlist WHERE " +
-                        "EVENTID IN (SELECT EVENT_ID FROM cs460teamc.user_event WHERE email=" + useremail + ");");
+                        "EVENTID IN (SELECT EVENT_ID FROM cs460teamc.user_event WHERE email=" + MainActivity.useremail + ");");
                 while (result.next()) {
 
                         String eventnames = result.getString("summary"); //event name

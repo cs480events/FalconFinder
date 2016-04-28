@@ -78,14 +78,14 @@ public class    EventList extends Activity implements AdapterView.OnItemClickLis
         return true;
     }
     public void goCategory (MenuItem item) {
-        setContentView(R.layout.category_list);
+
         Intent i = new Intent(this, Category.class);
         startActivity(i);
     }
 
     // go to userevents
     public void goUserEvents(MenuItem item) {
-        setContentView(R.layout.userlist);
+
         Intent i = new Intent (this, UserEvents.class);
         startActivity(i);
     }

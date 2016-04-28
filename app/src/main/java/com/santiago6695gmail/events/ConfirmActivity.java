@@ -27,15 +27,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Locale;
 
-public class ConfirmActivity extends Activity implements OnClickListener, TextToSpeech.OnInitListener {
+public class ConfirmActivity extends Activity implements OnClickListener {
 
     private Button yesbutton; //Button for if user clicks yes
     private Button nobutton; //Button for if user clicks no
     private String value =""; //String to hold initial String passed via intent
     private String grabbedname =""; //Grabbing only the name from the string
     private String PRIMARYKEY =""; //Grabbing only the PK from the string
-    private String dumy = MainActivity.emailFieldString.trim(); //contains Dulat's email from the MainActivity Class
-    private String useremail = "'"+dumy+"'"; //Formats the dumy class
     private static final String tag = "Speaking"; //For the text to speech
     private TextView tview; //Text view widget
     private Thread t = null; //Background thread for running JDBC
@@ -43,7 +41,6 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
     private Intent movebackyes; //Moves user back to EventList if yes is clicked
     private Intent movebackno; //Moves user back to EventList if no is clicked
     private Intent notifclicked; //Moves user to eventlist for new event
-    private TextToSpeech speaker; // speaker for speaking event added
     private NotificationManager notificationManager; // for notifications
     private NotificationCompat.Builder notif; //For notifications
 
@@ -53,8 +50,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
             if (msg.arg1 == 0){ //If message is successfully received...
                 tust.show(); //Show user the success toast
                 startActivity(movebackyes); //Move back to the main event list
-                speak(grabbedname + "added!");
-                notificationManager.notify(0, notif.build());
+
 
             }
         }
@@ -67,29 +63,14 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
         ActionBar actionBar = getActionBar();
         actionBar.show();
 
-        Bundle extras = getIntent().getExtras(); //Grabbing from the EventList intent
-        value = extras.getString("Switcher");
+        Bundle supers = getIntent().getExtras(); //Grabbing from the EventList intent
+        value = supers.getString("Switcher");
 
         //Format
         int locationofend = value.indexOf(":::"); //Using my ::: as a reference to determine the end of the name
         grabbedname = value.substring(0, locationofend); //Use the start of the String and the locationofend int to pull out the name
         PRIMARYKEY = value.substring(locationofend + 3, value.length()); //Use locationofend int and length of String to pull the PK
         tust = Toast.makeText(this, grabbedname + " added!", Toast.LENGTH_LONG); //Setting up the toast for later use
-
-
-        //notification
-        //to do - take you to personal instead of all the events
-        notifclicked = new Intent(this, UserEvents.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), notifclicked, 0);
-        notif  = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("New event added")
-                .setContentText(grabbedname)
-                .setContentIntent(pIntent)
-                .setAutoCancel(true);
-
-        //set up notification aspect
-        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         //Initializing and setting text to the text view
         tview = (TextView) findViewById(R.id.status);
@@ -106,10 +87,6 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
         //Setting t to the background runnable, to be used when we are ready
         t = new Thread(background);
-
-        //Initialize Text to Speech engine (context, listener object)
-        speaker = new TextToSpeech(this, this);
-
     }
 
 // set up menu
@@ -120,14 +97,14 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
     }
 
     public void goCategory (MenuItem item) {
-        setContentView(R.layout.category_list);
+
         Intent i = new Intent(this, Category.class);
         startActivity(i);
     }
 
     // go to userevents
     public void goUserEvents(MenuItem item) {
-        setContentView(R.layout.userlist);
+
         Intent i = new Intent (this, UserEvents.class);
         startActivity(i);
     }
@@ -136,49 +113,19 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
         System.exit(0);
     }
 
-    @TargetApi(21)
-    public void speak(String output){
-        speaker.speak(output, TextToSpeech.QUEUE_FLUSH, null, "Id 0");
-    }
-
-    //For text to speech
-    public void onInit(int status) {
-        // status can be either TextToSpeech.SUCCESS or TextToSpeech.ERROR.
-        if (status == TextToSpeech.SUCCESS) {
-            // Set preferred language to US english.
-            // If a language is not be available, the result will indicate it.
-            int result = speaker.setLanguage(Locale.US);
-
-            //  int result = speaker.setLanguage(Locale.FRANCE);
-            if (result == TextToSpeech.LANG_MISSING_DATA ||
-                    result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                // Language data is missing or the language is not supported.
-                Log.e(tag, "Language is not available.");
-            } else {
-                // The TTS engine has been successfully initialized
-                Log.i(tag, "TTS Initialization successful.");
-            }
-        } else {
-            // Initialization failed.
-            Log.e(tag, "Could not initialize TextToSpeech.");
-        }
-    }
-
-
-
     public void onClick(View v) { //Onclick listener
         switch (v.getId()) {
 
             case R.id.yesbutton: //for yes
 
-                movebackyes = new Intent(this, EventList.class); //Intent set up
+                movebackyes = new Intent(this, Category.class); //Intent set up
                 t.start(); //Start the background thread
                 yesbutton.setVisibility(View.GONE); //Hide the buttons so user can't crash the program
                 nobutton.setVisibility(View.GONE);
                 break;
 
             case R.id.nobutton:
-                movebackno = new Intent(this, EventList.class); //intent set up AND fired off
+                movebackno = new Intent(this, Category.class); //intent set up AND fired off
                 startActivity(movebackno);
                 break;
         }
@@ -210,8 +157,8 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
             try {
                 // execute SQL commands to create table, insert data, select contents
-                stmt.executeUpdate("insert into user_event values(null, " + useremail + ", " + PRIMARYKEY + ");");
-                Log.e("CheckingSQL", "stmt.executeUpdate(insert into user_event values(null, " + useremail + ", " + PRIMARYKEY + ");");
+                stmt.executeUpdate("insert into user_event values(null, " + MainActivity.useremail + ", " + PRIMARYKEY + ");");
+                Log.e("CheckingSQL", "stmt.executeUpdate(insert into user_event values(null, " + MainActivity.useremail + ", " + PRIMARYKEY + ");");
 
                 con.close();
 

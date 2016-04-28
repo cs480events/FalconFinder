@@ -23,15 +23,16 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-    public static String emailFieldString = "marat_dula@bentley.edu";// hardcoded string until global variable works
+ //   public static String emailFieldString = "marat_dula@bentley.edu";// hardcoded string until global variable works
     public static EditText emailField; // where user enters email
-//    public static String emailFieldString = emailField.getText().toString();// testing global variable
+    public static String emailFieldString;// testing global variable
+    public static String useremail;
     public static String dumy; // dumy string to think
     private EditText passwordField; // where user enters password
     private Button signInButton; // sign in button
     private TextView userEmail; // text view of user email
     private TextView userPassword; // text view of user password
-    public Intent i;
+    private Intent i;
 
     private Thread t = null; //variable for thread
     private TextView slogan = null; // Textview for slogan animal
@@ -60,6 +61,7 @@ public class MainActivity extends Activity implements OnClickListener {
         in.setDuration(5000);
         slogan.startAnimation(in);
         slogan.setText("Find all events on campus!");
+
 
         // setting up the text view and edit text views for user to enter
         emailField = (EditText) findViewById(R.id.enterEmail);
@@ -113,9 +115,11 @@ public class MainActivity extends Activity implements OnClickListener {
             {
 
                 emailFieldString = emailField.getText().toString(); // set email field to email field string
+                useremail = "'"+emailFieldString+"'";
                 Log.e("Checking",emailFieldString); // writing to the log checking if it got the username's email
                 t = new Thread(background); // making a thread
                 t.start(); // starting a thread
+                break;
             }
 
         }
