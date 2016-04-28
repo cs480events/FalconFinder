@@ -81,7 +81,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
         //notification
         //to do - take you to personal instead of all the events
-        notifclicked = new Intent(this, EventList.class);
+        notifclicked = new Intent(this, UserEvents.class);
         PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), notifclicked, 0);
         notif  = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
