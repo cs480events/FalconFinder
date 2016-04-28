@@ -41,13 +41,12 @@
         android:id="@+id/password"
         style="@style/sign_upTextView"
         android:text="@string/password"
-        android:layout_above="@+id/log_in"
+        android:layout_above="@+id/signin"
         android:layout_marginBottom="38dp">
     </TextView>
 
     <EditText
         android:id="@+id/enterPassword"
-        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/email"
@@ -57,7 +56,7 @@
     </EditText>
 
     <Button
-        android:id="@+id/log_in"
+        android:id="@+id/signin"
         android:text="@string/log_in"
         style="@style/buttonStyle"
         android:layout_centerVertical="true"
@@ -76,16 +75,28 @@
         android:id="@+id/eventlistswitch"
         android:text="@string/push_me"
         style="@style/buttonStyle"
-        android:layout_below="@+id/log_in"
-        android:layout_toRightOf="@+id/log_in"
-        android:layout_toEndOf="@+id/log_in"
+        android:layout_below="@+id/signin"
+        android:layout_toRightOf="@+id/signin"
+        android:layout_toEndOf="@+id/signin"
         android:layout_marginTop="60dp" />
     <Button
         android:id="@+id/log_in_web"
         android:text="@string/log_in_online"
         style="@style/buttonStyle"
-        android:layout_below="@+id/log_in"
+        android:layout_below="@+id/signin"
         android:layout_toRightOf="@+id/eventlistswitch"
         android:layout_marginTop="60dp" />
+
+    <Button
+        android:id="@+id/dialerbutt"
+        android:text="Call Admin"
+        style="@style/buttonStyle"
+        android:color="#de0909"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/log_in_web"
+        android:layout_alignEnd="@+id/log_in_web"
+        android:layout_toRightOf="@+id/password"
+        android:layout_toEndOf="@+id/password" />
+
 
 </RelativeLayout>

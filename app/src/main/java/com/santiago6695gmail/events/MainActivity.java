@@ -35,6 +35,7 @@ public class MainActivity extends Activity implements OnClickListener {
     private ArrayList<String> list = new ArrayList<String>();
     private TextView slogan = null;
     private Button webLogIn;
+    private Button admindial;
 
     private String password;
     private static final String tag = "Usernames: ";
@@ -73,8 +74,20 @@ public class MainActivity extends Activity implements OnClickListener {
         signInButton = (Button) findViewById(R.id.signin);
         signInButton.setOnClickListener(this);
 
+        admindial = (Button) findViewById(R.id.dialerbutt);
+        admindial.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Uri dialuri = Uri.parse("tel:6039217921");
+                Intent dialintent = new Intent(Intent.ACTION_CALL, dialuri);
+                startActivity(dialintent); //Has a red line underneath, but runs completely normal
+            }
+        });
+
+
         Button signUpButton = (Button) findViewById(R.id.signup);
-        signUpButton.setOnClickListener(new View.OnClickListener() {
+        signUpButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 setContentView(R.layout.sign_up);
                 //start thread
