@@ -1,7 +1,6 @@
 package com.santiago6695gmail.events;
 
 
-import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.NotificationManager;
@@ -19,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -33,7 +33,8 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
     private String value; //String to hold initial String passed via intent
     private String grabbedname ="blank"; //Grabbing only the name from the string
     private String PRIMARYKEY; //Grabbing only the PK from the string
-    private String useremail = "'XIE_XIAO@bentley.edu'"; //Email/login of the current user
+    private String dumy = MainActivity.emailField.getText().toString().trim();
+    private String useremail = "'"+dumy+"'";
     private static final String tag = "Speaking";
     private TextView tview; //Text view widget
     private Thread t = null; //Background thread for running JDBC
