@@ -31,7 +31,7 @@ public class    EventList extends Activity implements AdapterView.OnItemClickLis
     private ArrayAdapter<String> todoitems; //Array adapter for my list view
     private Thread thred = null; //Thread used for background task (JDBC)
     private ArrayList<String> itemswithID; //Second array list, to hold the names WITH id numbers as well
-    private String selectquery;
+    public String selectquery;
 
     Handler handler = new Handler() {
         public void handleMessage(Message msg) { //Method which handles the messages sent
