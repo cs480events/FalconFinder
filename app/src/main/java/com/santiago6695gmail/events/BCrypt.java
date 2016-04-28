@@ -2,6 +2,7 @@ package com.santiago6695gmail.events;
 
 /**
  * Created by MARAT_DULA on 4/27/2016.
+ * This BCrypt java files decrpyts the passwords from the sql database in order to check the password according to user
  */
 // Copyright (c) 2006 Damien Miller <djm@mindrot.org>
 //
