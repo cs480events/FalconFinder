@@ -2,6 +2,7 @@ package com.santiago6695gmail.events;
 
 
 /* This activity holds all of the events from the database, and will be modified depending on the filter from categories */
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;

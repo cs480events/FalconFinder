@@ -33,7 +33,6 @@ public class DeleteActivity extends Activity implements View.OnClickListener {
     private String value; //String to hold initial String passed via intent
     private String grabbedname ="blank"; //Grabbing only the name from the string
     private String PRIMARYKEY; //Grabbing only the PK from the string
-    private static final String tag = "Speaking";
     private TextView tview; //Text view widget
     private Thread t = null; //Background thread for running JDBC
     private Toast tust; //Toast to let user know event was successfully added

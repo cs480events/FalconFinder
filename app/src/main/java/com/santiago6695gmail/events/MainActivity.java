@@ -27,13 +27,13 @@ public class MainActivity extends Activity implements OnClickListener, TextToSpe
 
     public static EditText emailField; // where user enters email
     public static String emailFieldString;// testing global variable
-    public static String useremail;
+    public static String useremail; //Holds email between different classes. ULTRA IMPORTANT
     public static String dumy; // dumy string to think
     private EditText passwordField; // where user enters password
     private Button signInButton; // sign in button
     private TextView userEmail; // text view of user email
     private TextView userPassword; // text view of user password
-    private Intent i;
+    private Intent i; //for all our intenting needs
     private Thread t = null; //variable for thread
     private TextView slogan = null; // Textview for slogan animal
     private Button webLogIn; // web login button
@@ -41,7 +41,7 @@ public class MainActivity extends Activity implements OnClickListener, TextToSpe
     private String password; // string to hold the password
     private static final String tag = "Usernames: "; // unviversal tag to check usernames
     public String email; // using to store the email of the user as a string
-    private TextToSpeech speaker;
+    private TextToSpeech speaker; //Text to speech object
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -191,7 +191,7 @@ public class MainActivity extends Activity implements OnClickListener, TextToSpe
                 {
                     Log.e("M", "True"); // if the password match log it and start activity
                     //Initialize Text to Speech engine
-                    speak ("Login   Successful");
+                    speak ("Login   Successful"); //Speaks if the login is successful
                     startActivity(i);
                 }
                 else

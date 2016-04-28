@@ -1,6 +1,7 @@
 package com.santiago6695gmail.events;
 
 /* This class allows you to confirm or deny the adding of a new activity to the database */
+
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -74,7 +75,7 @@ public class ConfirmActivity extends Activity implements OnClickListener {
 
         //Initializing and setting text to the text view
         tview = (TextView) findViewById(R.id.status);
-        String s = "Add" + grabbedname +" to your events?";
+        String s = "Add " + grabbedname +" to your events?";
         tview.setText(s);
 
         //Initializing yes button
