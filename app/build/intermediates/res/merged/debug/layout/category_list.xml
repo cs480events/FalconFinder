@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:background="@color/blue"
         android:layout_below="@+id/all"
-        android:text="@string/sports"
+        android:text="@string/athletics"
         android:textAllCaps="false">
     </Button>
     <Button

@@ -224,8 +224,9 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
 
             try {
                 // execute SQL commands to delete from the user's event list
+                Log.e("Delete email", useremail);
 
-                stmt.executeUpdate("delete from user_event where email = " + useremail + " AND EVENT_ID = " + PRIMARYKEY + ";");
+                stmt.executeUpdate("delete from user_event where email ='" + useremail + "' AND EVENT_ID = " + PRIMARYKEY + ";");
 
                 con.close();
 

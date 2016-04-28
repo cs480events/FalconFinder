@@ -22,9 +22,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class MainActivity extends Activity implements OnClickListener {
-
-    public static EditText emailField;
     public static String emailFieldString = "marat_dula@bentley.edu";
+    public static EditText emailField;
     public static String dumy;
     private EditText passwordField;
     private Button signInButton;
@@ -111,6 +110,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
             case R.id.signin:
             {
+
                 emailFieldString = emailField.getText().toString();
                 Log.e("Checking",emailFieldString);
                 t = new Thread(background);

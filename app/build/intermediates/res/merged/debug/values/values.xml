@@ -299,6 +299,7 @@
     <string name="all_events">All Events</string>
     <string name="app_name">Falcon Finder</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="athletics">Athletics</string>
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
     <string name="career_services">Career</string>
     <string name="categories">Categories</string>
@@ -312,6 +313,7 @@
     <string name="last_name">Last Name</string>
     <string name="location"> Location </string>
     <string name="log_in">Log In</string>
+    <string name="log_in_online">Web Log In</string>
     <string name="no">No</string>
     <string name="other">Other</string>
     <string name="password">Password</string>
@@ -319,7 +321,7 @@
     <string name="push_me">PUSH ME FOR EVENTS</string>
     <string name="reminder">Reminder Time</string>
     <string name="sign_up">Sign Up</string>
-    <string name="sports">Athletics</string>
+    <string name="sports">Events</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="time">Time</string>
     <string name="user_events">User Events</string>
