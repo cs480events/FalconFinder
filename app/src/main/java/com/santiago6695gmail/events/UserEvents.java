@@ -32,7 +32,7 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
     private ArrayAdapter<String> todoitems; //Array adapter for my list view
     private Thread thred = null; //Thread used for background task (JDBC)
     private ArrayList<String> itemswithID; //Second array list, to hold the names WITH id numbers as well
-    private String dumy = Category.dumy.trim();
+    private String dumy = MainActivity.emailFieldString.trim();
     private String useremail = "'"+dumy +"'";
 
     Handler handler = new Handler() {
@@ -132,6 +132,8 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
                         "SELECT SUMMARY, LOCATION, DATE, START_TIME, EVENTID FROM cs460teamc.eventlist WHERE " +
                                 "EVENTID IN (SELECT EVENT_ID FROM cs460teamc.user_event WHERE email=" + useremail + ");"); //Very long SQL query to grab all the info for each event user is registered for
                     Log.e("Useremail",useremail);
+                Log.e("Fuck", "SELECT SUMMARY, LOCATION, DATE, START_TIME, EVENTID FROM cs460teamc.eventlist WHERE " +
+                        "EVENTID IN (SELECT EVENT_ID FROM cs460teamc.user_event WHERE email=" + useremail + ");");
                 while (result.next()) {
 
                         String eventnames = result.getString("summary"); //event name
