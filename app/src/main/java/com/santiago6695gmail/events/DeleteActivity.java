@@ -30,25 +30,18 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
 
     private Button yesbutton; //Button for if user clicks yes
     private Button nobutton; //Button for if user clicks no
-
     private String value; //String to hold initial String passed via intent
     private String grabbedname ="blank"; //Grabbing only the name from the string
     private String PRIMARYKEY; //Grabbing only the PK from the string
     private String useremail = "'XIE_XIAO@bentley.edu'"; //Email/login of the current user
     private static final String tag = "Speaking";
-
     private TextView tview; //Text view widget
-
     private Thread t = null; //Background thread for running JDBC
-
     private Toast tust; //Toast to let user know event was successfully added
-
     private Intent movebackyes; //Moves user back to EventList if yes is clicked
     private Intent movebackno; //Moves user back to EventList if no is clicked
     private Intent notifclicked; //Moves user to eventlist for new event
-
     private TextToSpeech speaker; // speaker for speaking event added
-
     private NotificationManager notificationManager; // for notifications
     private NotificationCompat.Builder notif;
 
@@ -58,7 +51,7 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
             if (msg.obj.equals("IsReallyDone")){ //If message is successfully received...
 
                 tust.show(); //Show user the success toast
-                startActivity(movebackyes); //Move back to the main event list
+                startActivity(movebackyes); //Move back to the user event list
                // speak(grabbedname + "deleted!");
                 notificationManager.notify(0, notif.build());
 
@@ -74,7 +67,7 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
         ActionBar actionBar = getActionBar();
         actionBar.show();
 
-        Bundle extras = getIntent().getExtras(); //Grabbing from the EventList intent
+        Bundle extras = getIntent().getExtras(); //Grabbing from the UserEvent intent
         value = extras.getString("The Deleta");
 
         //Format
@@ -86,11 +79,11 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
 
         //notification
         //to do - take you to personal instead of all the events
-        notifclicked = new Intent(this, EventList.class);
+        notifclicked = new Intent(this, UserEvents.class);
         PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), notifclicked, 0);
         notif  = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("New event deleted")
+                .setContentTitle("Event deleted")
                 .setContentText(grabbedname)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true);
@@ -115,9 +108,9 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
         //Initialize Text to Speech engine (context, listener object)
         speaker = new TextToSpeech(this, this);
 
-
-
     }
+
+
     // set up menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -156,6 +149,7 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
             speaker.speak(output, TextToSpeech.QUEUE_FLUSH, null, "Id 0");
     } */
 
+    //For text to speech
     public void onInit(int status) {
         // status can be either TextToSpeech.SUCCESS or TextToSpeech.ERROR.
         if (status == TextToSpeech.SUCCESS) {
@@ -205,8 +199,6 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
 
 
             String URL = "jdbc:mysql://frodo.bentley.edu:3306/CS460Teamc";
-            String username = "cs460teamc";
-            String password = "cs460teamc";
 
             try { //load driver into VM memory
                 Class.forName("com.mysql.jdbc.Driver");
@@ -228,11 +220,9 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
             }
 
             try {
-                // execute SQL commands to create table, insert data, select contents
-                Log.e("HEYO", "delete from user_event where email = " + useremail + " AND EVENT_ID = " + PRIMARYKEY + ";");
+                // execute SQL commands to delete from the user's event list
+
                 stmt.executeUpdate("delete from user_event where email = " + useremail + " AND EVENT_ID = " + PRIMARYKEY + ";");
-
-
 
                 con.close();
 
@@ -246,12 +236,5 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
 
         }
 
-
-
-
     };
-
-
-
-
 }

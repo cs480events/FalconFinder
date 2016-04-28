@@ -27,6 +27,7 @@
         <activity android:name="com.santiago6695gmail.events.EventList" />
         <activity android:name="com.santiago6695gmail.events.ConfirmActivity" />
         <activity android:name="com.santiago6695gmail.events.UserEvents" />
+        <activity android:name="com.santiago6695gmail.events.DeleteActivity" />
     </application>
 
 </manifest>

@@ -131,8 +131,8 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
                        while (result.next()) {
 
                            String eventnames = result.getString("summary"); //event name
-                           String eventloc = result.getString("location"); //event location; MAKE IT SO NULL FIELDS ARENT BLANK
-                           if (eventloc == null ){
+                           String eventloc = result.getString("location"); //event location
+                           if (eventloc == null ){ //Add the Dana Center as the default location for null event locations
                                eventloc = "Dana Center";
                            }else if(eventloc.equals("") ){
                                eventloc = "Dana Center";

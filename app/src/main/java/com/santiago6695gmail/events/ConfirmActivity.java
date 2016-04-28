@@ -22,7 +22,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -35,25 +34,18 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
     private Button yesbutton; //Button for if user clicks yes
     private Button nobutton; //Button for if user clicks no
-
     private String value; //String to hold initial String passed via intent
     private String grabbedname ="blank"; //Grabbing only the name from the string
     private String PRIMARYKEY; //Grabbing only the PK from the string
     private String useremail = "'XIE_XIAO@bentley.edu'"; //Email/login of the current user
     private static final String tag = "Speaking";
-
     private TextView tview; //Text view widget
-
     private Thread t = null; //Background thread for running JDBC
-
     private Toast tust; //Toast to let user know event was successfully added
-
     private Intent movebackyes; //Moves user back to EventList if yes is clicked
     private Intent movebackno; //Moves user back to EventList if no is clicked
     private Intent notifclicked; //Moves user to eventlist for new event
-
     private TextToSpeech speaker; // speaker for speaking event added
-
     private NotificationManager notificationManager; // for notifications
     private NotificationCompat.Builder notif;
 
@@ -80,6 +72,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
         Bundle extras = getIntent().getExtras(); //Grabbing from the EventList intent
         value = extras.getString("Switcher");
+
         //Format
         int locationofend = value.indexOf(":::"); //Using my ::: as a reference to determine the end of the name
         grabbedname = value.substring(0, locationofend); //Use the start of the String and the locationofend int to pull out the name
@@ -97,6 +90,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
                 .setContentText(grabbedname)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true);
+
         //set up notification aspect
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
@@ -118,9 +112,8 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
         //Initialize Text to Speech engine (context, listener object)
         speaker = new TextToSpeech(this, this);
 
+    }
 
-
-        }
 // set up menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -161,6 +154,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
         speaker.speak(output, TextToSpeech.QUEUE_FLUSH, null, "Id 0");
     } */
 
+    //For text to speech
     public void onInit(int status) {
         // status can be either TextToSpeech.SUCCESS or TextToSpeech.ERROR.
         if (status == TextToSpeech.SUCCESS) {
@@ -208,16 +202,12 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
         @Override
         public void run() { //Background thread for JDBC
 
-
             String URL = "jdbc:mysql://frodo.bentley.edu:3306/CS460Teamc";
-            String username = "cs460teamc";
-            String password = "cs460teamc";
 
             try { //load driver into VM memory
                 Class.forName("com.mysql.jdbc.Driver");
             } catch (ClassNotFoundException e) {
                 Log.e("JDBC", "Did not load driver");
-
             }
 
             Statement stmt = null;
@@ -234,11 +224,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
             try {
                 // execute SQL commands to create table, insert data, select contents
-
-                Log.w("IMTOM", "insert into user_event values(null, " + useremail + ", " + PRIMARYKEY + ");");
                 stmt.executeUpdate("insert into user_event values(null, " + useremail + ", " + PRIMARYKEY + ");");
-
-
 
                 con.close();
 
@@ -251,15 +237,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
             infohandler.sendMessage(msg);
 
         }
-
-
-
-
     };
-
-
-
-
 }
 
 

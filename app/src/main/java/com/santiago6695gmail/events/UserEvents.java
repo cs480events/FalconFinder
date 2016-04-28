@@ -126,12 +126,14 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
 
             try {
 
-                ResultSet result = stmt.executeQuery("SELECT SUMMARY, LOCATION, DATE, START_TIME, EVENTID FROM cs460teamc.eventlist WHERE EVENTID IN (SELECT EVENT_ID FROM cs460teamc.user_event WHERE email='XIE_XIAO@bentley.edu');"); //If it works, give us all of it!!!
+                ResultSet result = stmt.executeQuery("SELECT SUMMARY, LOCATION, DATE, START_TIME, EVENTID FROM " +
+                        "cs460teamc.eventlist WHERE EVENTID IN (SELECT EVENT_ID FROM cs460teamc.user_event " +
+                        "WHERE email='XIE_XIAO@bentley.edu');"); //Very long SQL query to grab all the info for each event user is registered for
 
                 while (result.next()) {
 
                         String eventnames = result.getString("summary"); //event name
-                        String eventloc = result.getString("location"); //event location; MAKE IT SO NULL FIELDS ARENT BLANK
+                        String eventloc = result.getString("location"); //event location; set default to Dana Center
                         if (eventloc == null ){
                             eventloc = "Dana Center";
                              }
@@ -149,10 +151,6 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
                         String thegoodstuff = eventnames + ":::" + eventID; //the stuff WE actually care about: name and PK
                         itemswithID.add(thegoodstuff); //add this stuff to a separate array
                     }
-
-
-
-
 
                 //clean up
                 con.close();
