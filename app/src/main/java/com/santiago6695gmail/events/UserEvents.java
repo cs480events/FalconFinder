@@ -14,8 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -32,7 +32,8 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
     private ArrayAdapter<String> todoitems; //Array adapter for my list view
     private Thread thred = null; //Thread used for background task (JDBC)
     private ArrayList<String> itemswithID; //Second array list, to hold the names WITH id numbers as well
-    private String useremail = "'XIE_XIAO@bentley.edu'";
+    private String dumy = MainActivity.emailField.getText().toString().trim();
+    private String useremail = "'"+dumy+"'";
 
     Handler handler = new Handler() {
         public void handleMessage(Message msg) { //Method which handles the messages sent

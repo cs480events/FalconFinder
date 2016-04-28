@@ -8,10 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.Button;
-import android.widget.TextView;
 
 /**
  * Created by TORRES_SANT on 4/27/2016.
@@ -22,7 +19,8 @@ public class Category extends Activity implements View.OnClickListener {
     private Button athleticbutton;
     private Button careerbutton;
     private Button otherbutton;
-    private String useremail = "'XIE_XIAO@bentley.edu'";
+    private String dumy = MainActivity.emailField.getText().toString().trim();
+    private String useremail = "'"+dumy+"'";
 
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);

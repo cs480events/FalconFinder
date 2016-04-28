@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-    private EditText emailField;
+    public static EditText emailField;
     private EditText passwordField;
     private Button signUpButton;
     private Button signInButton;
