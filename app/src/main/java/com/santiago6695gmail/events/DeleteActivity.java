@@ -65,7 +65,12 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
 
         //set up menu
         ActionBar actionBar = getActionBar();
-        actionBar.show();
+        try {
+            actionBar.show();
+        }
+        catch(NullPointerException e) {
+            Log.e("Error","Action Bar failed");
+        }
 
         Bundle extras = getIntent().getExtras(); //Grabbing from the UserEvent intent
         value = extras.getString("The Deleta");

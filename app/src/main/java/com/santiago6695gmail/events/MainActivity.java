@@ -33,7 +33,12 @@ public class MainActivity extends Activity implements OnClickListener {
         setContentView(R.layout.sign_in);
         //hide title and icon in action bar
         ActionBar actionBar = getActionBar();
-        actionBar.show();
+        try {
+            actionBar.show();
+        }
+        catch(NullPointerException e) {
+            Log.e("Error","Action Bar failed");
+        }
         //animated slogan
         slogan = (TextView) findViewById(R.id.slogan);
         final Animation in = new AlphaAnimation(0.0f, 1.0f);
@@ -101,6 +106,9 @@ public class MainActivity extends Activity implements OnClickListener {
         } catch (SQLException e) {
             Log.e("JDBC","problems with SQL sent to "+URL+
                     ": "+e.getMessage());
+        }
+        catch (NullPointerException e) {
+            Log.e("NULL", "some other null pointer error");
         }
 
     }
