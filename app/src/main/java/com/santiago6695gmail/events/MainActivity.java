@@ -99,8 +99,6 @@ public class MainActivity extends Activity implements OnClickListener {
         i = new Intent (this, Category.class);
 
 
-        Button switcheventbutton = (Button) findViewById(R.id.eventlistswitch);
-        switcheventbutton.setOnClickListener(this);
         webLogIn = (Button) findViewById(R.id.log_in_web);
         webLogIn.setOnClickListener(new OnClickListener() {
             @Override
