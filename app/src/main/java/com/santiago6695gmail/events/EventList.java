@@ -24,7 +24,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 
-public class EventList extends Activity implements AdapterView.OnItemClickListener {
+public class    EventList extends Activity implements AdapterView.OnItemClickListener {
 
     private ListView lview; //For my list view widget
     private ArrayList<String> items; //An array list to hold all the list view items
@@ -78,6 +78,7 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
         return true;
     }
     public void goCategory (MenuItem item) {
+        setContentView(R.layout.category_list);
         Intent i = new Intent(this, Category.class);
         startActivity(i);
     }
