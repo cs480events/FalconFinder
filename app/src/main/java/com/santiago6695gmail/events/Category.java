@@ -51,22 +51,22 @@ public class Category extends Activity implements View.OnClickListener {
         switch(v.getId()) {
             case R.id.all: {
                 Intent i = new Intent(this,EventList.class);
-                i.putExtra("Category","All");
+                i.putExtra("Category", "*");
                 startActivity(i);
             }
             case R.id.Sports: {
                 Intent i = new Intent(this,EventList.class);
-                i.putExtra("Category","Sports");
+                i.putExtra("Category", "Athletics");
                 startActivity(i);
             }
             case R.id.Career_Service:{
                 Intent i = new Intent(this,EventList.class);
-                i.putExtra("Category","Career");
+                i.putExtra("Category", "Careers");
                 startActivity(i);
             }
             case R.id.Other:{
                 Intent i = new Intent(this,EventList.class);
-                i.putExtra("Category","Other");
+                i.putExtra("Category", "Other");
                 startActivity(i);
             }
         }

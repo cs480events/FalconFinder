@@ -31,6 +31,7 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
     private ArrayAdapter<String> todoitems; //Array adapter for my list view
     private Thread thred = null; //Thread used for background task (JDBC)
     private ArrayList<String> itemswithID; //Second array list, to hold the names WITH id numbers as well
+    private String filter = "*";
 
     Handler handler = new Handler() {
         public void handleMessage(Message msg) { //Method which handles the messages sent
@@ -64,6 +65,10 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
         //Begin background thread, so the events can be pulled from the database to the listview
         thred = new Thread(background);
         thred.start();
+
+        Bundle extras = getIntent().getExtras(); //Grabbing from the EventList intent
+        filter = extras.getString("Category");
+        Log.e("ABCD", filter);
     }
 
     //inflate menu
@@ -125,7 +130,7 @@ public class EventList extends Activity implements AdapterView.OnItemClickListen
 
                    try {
 
-                       ResultSet result = stmt.executeQuery("SELECT * FROM cs460teamc.eventlist WHERE MONTH(DATE) = MONTH(now()) AND YEAR(DATE)=YEAR(now()) AND DAY(DATE)>=DAY(now()) AND EventID NOT IN (SELECT EVENT_ID FROM `cs460teamc`.User_event WHERE email ='XIE_XIAO@bentley.edu')"); //If it works, give us all of it!!!
+                       ResultSet result = stmt.executeQuery("SELECT * FROM cs460teamc.eventlist WHERE Category = " + filter + " AND MONTH(DATE) = MONTH(now()) AND YEAR(DATE)=YEAR(now()) AND DAY(DATE)>=DAY(now()) AND EventID NOT IN (SELECT EVENT_ID FROM `cs460teamc`.User_event WHERE email ='XIE_XIAO@bentley.edu')"); //If it works, give us all of it!!!
 
                        while (result.next()) {
 

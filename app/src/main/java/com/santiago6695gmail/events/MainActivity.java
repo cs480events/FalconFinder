@@ -55,8 +55,7 @@ public class MainActivity extends Activity implements OnClickListener {
     }
 
     public void onClick(View v) {
-        setContentView(R.layout.eventlist);
-        Intent i = new Intent (this, EventList.class);
+        Intent i = new Intent (this, Category.class);
         startActivity(i);
     }
 
