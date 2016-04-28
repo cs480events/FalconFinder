@@ -34,9 +34,9 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
     private Button yesbutton; //Button for if user clicks yes
     private Button nobutton; //Button for if user clicks no
-    private String value; //String to hold initial String passed via intent
-    private String grabbedname ="blank"; //Grabbing only the name from the string
-    private String PRIMARYKEY; //Grabbing only the PK from the string
+    private String value =""; //String to hold initial String passed via intent
+    private String grabbedname =""; //Grabbing only the name from the string
+    private String PRIMARYKEY =""; //Grabbing only the PK from the string
     private String useremail = "'XIE_XIAO@bentley.edu'"; //Email/login of the current user
     private static final String tag = "Speaking";
     private TextView tview; //Text view widget
@@ -52,8 +52,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
     Handler infohandler = new Handler() { //Method which handles the messages sent
         public void handleMessage(Message msg) {
-            if (msg.obj.equals("IsReallyDone")){ //If message is successfully received...
-
+            if (msg.arg1 == 0){ //If message is successfully received...
                 tust.show(); //Show user the success toast
                 startActivity(movebackyes); //Move back to the main event list
                 speak(grabbedname + "added!");
@@ -96,7 +95,8 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
         //Initializing and setting text to the text view
         tview = (TextView) findViewById(R.id.status);
-        tview.setText("Add " + grabbedname + " to your events?");
+        String s = "Add" + grabbedname +" to your events?";
+        tview.setText(s);
 
         //Initializing yes button
         yesbutton = (Button) findViewById(R.id.yesbutton);
@@ -140,11 +140,6 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
 
     @TargetApi(21)
     public void speak(String output){
-        if(output.equals(null))
-        {
-
-        }
-        else
         speaker.speak(output, TextToSpeech.QUEUE_FLUSH, null, "Id 0");
     }
 
@@ -227,7 +222,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
                         ": " + e.getMessage());
             }
 
-            Message msg = infohandler.obtainMessage(1, "IsReallyDone"); //Shooting the information over to the handler for inspection
+            Message msg = infohandler.obtainMessage(1); //Shooting the information over to the handler for inspection
             infohandler.sendMessage(msg);
 
         }
