@@ -35,8 +35,10 @@
     //buttons
     <string name="all">All</string>
     <string name="career_services">Career</string>
-    <string name="sports">Athletics</string>
+    <string name="sports">Events</string>
     <string name="other">Other</string>
+    <string name="athletics">Athletics</string>
+    <string name="log_in_online">Web Log In</string>
 
     //menu
     <string name="exit">Exit</string>

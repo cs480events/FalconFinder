@@ -80,5 +80,12 @@
         android:layout_toRightOf="@+id/log_in"
         android:layout_toEndOf="@+id/log_in"
         android:layout_marginTop="60dp" />
+    <Button
+        android:id="@+id/log_in_web"
+        android:text="@string/log_in_online"
+        style="@style/buttonStyle"
+        android:layout_below="@+id/log_in"
+        android:layout_toRightOf="@+id/eventlistswitch"
+        android:layout_marginTop="60dp" />
 
 </RelativeLayout>
