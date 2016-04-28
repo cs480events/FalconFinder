@@ -3,6 +3,7 @@ package com.santiago6695gmail.events;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -26,6 +27,7 @@ public class MainActivity extends Activity implements OnClickListener {
     private Thread t = null;
     private ArrayList<String> list = new ArrayList<String>();
     private TextView slogan = null;
+    private Button webLogIn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,8 +59,21 @@ public class MainActivity extends Activity implements OnClickListener {
         });
         Button switcheventbutton = (Button) findViewById(R.id.eventlistswitch);
         switcheventbutton.setOnClickListener(this);
-    }
+        webLogIn = (Button) findViewById(R.id.log_in_web);
+        webLogIn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openBrowser();
+            }
+        });
 
+
+    }
+    public void openBrowser() {
+        Uri uri = Uri.parse("http://frodo.bentley.edu/CS460Teamc");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
     public void onClick(View v) {
         Intent i = new Intent (this, Category.class);
         startActivity(i);
