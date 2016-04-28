@@ -49,7 +49,12 @@ public class    EventList extends Activity implements AdapterView.OnItemClickLis
 
         //set up menu
         ActionBar actionBar = getActionBar();
-        actionBar.show();
+        try {
+            actionBar.show();
+        }
+        catch(NullPointerException e) {
+            Log.e("Error","Action Bar failed");
+        }
 
         //Setting up my list view
         lview = (ListView) findViewById(R.id.list);
