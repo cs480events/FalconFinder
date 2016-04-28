@@ -1,7 +1,7 @@
 package com.santiago6695gmail.events;
 
 
-
+/* A list of all events that the user has registered for */
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -32,8 +32,8 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
     private ArrayAdapter<String> todoitems; //Array adapter for my list view
     private Thread thred = null; //Thread used for background task (JDBC)
     private ArrayList<String> itemswithID; //Second array list, to hold the names WITH id numbers as well
-    private String dumy = MainActivity.emailFieldString.trim();
-    private String useremail = "'"+dumy +"'";
+    private String dumy = MainActivity.emailFieldString.trim(); //Grabs dulat's email from the Main Activity
+    private String useremail = "'"+dumy +"'"; //Formats dumy
 
     Handler handler = new Handler() {
         public void handleMessage(Message msg) { //Method which handles the messages sent

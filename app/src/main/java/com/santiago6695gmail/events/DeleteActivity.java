@@ -1,6 +1,6 @@
 package com.santiago6695gmail.events;
 
-
+/* This class allows you to confirm or deny the deletion of the selected activity from the database */
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.NotificationManager;
@@ -33,8 +33,8 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
     private String value; //String to hold initial String passed via intent
     private String grabbedname ="blank"; //Grabbing only the name from the string
     private String PRIMARYKEY; //Grabbing only the PK from the string
-    private String dumy = MainActivity.emailFieldString.trim();
-    private String useremail = dumy;
+    private String dumy = MainActivity.emailFieldString.trim(); //Holds Dulat's email from the main activity
+    private String useremail = dumy; //formatted dumy
     private static final String tag = "Speaking";
     private TextView tview; //Text view widget
     private Thread t = null; //Background thread for running JDBC
@@ -44,7 +44,7 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
     private Intent notifclicked; //Moves user to eventlist for new event
     private TextToSpeech speaker; // speaker for speaking event added
     private NotificationManager notificationManager; // for notifications
-    private NotificationCompat.Builder notif;
+    private NotificationCompat.Builder notif; //For notification
 
 
     Handler infohandler = new Handler() { //Method which handles the messages sent

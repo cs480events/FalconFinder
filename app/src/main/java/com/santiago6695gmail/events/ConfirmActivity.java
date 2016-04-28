@@ -1,5 +1,6 @@
 package com.santiago6695gmail.events;
 
+/* This class allows you to confirm or deny the adding of a new activity to the database */
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -33,9 +34,9 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
     private String value =""; //String to hold initial String passed via intent
     private String grabbedname =""; //Grabbing only the name from the string
     private String PRIMARYKEY =""; //Grabbing only the PK from the string
-    private String dumy = MainActivity.emailFieldString.trim();
-    private String useremail = "'"+dumy+"'";
-    private static final String tag = "Speaking";
+    private String dumy = MainActivity.emailFieldString.trim(); //contains Dulat's email from the MainActivity Class
+    private String useremail = "'"+dumy+"'"; //Formats the dumy class
+    private static final String tag = "Speaking"; //For the text to speech
     private TextView tview; //Text view widget
     private Thread t = null; //Background thread for running JDBC
     private Toast tust; //Toast to let user know event was successfully added
@@ -44,7 +45,7 @@ public class ConfirmActivity extends Activity implements OnClickListener, TextTo
     private Intent notifclicked; //Moves user to eventlist for new event
     private TextToSpeech speaker; // speaker for speaking event added
     private NotificationManager notificationManager; // for notifications
-    private NotificationCompat.Builder notif;
+    private NotificationCompat.Builder notif; //For notifications
 
 
     Handler infohandler = new Handler() { //Method which handles the messages sent
