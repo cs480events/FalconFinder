@@ -26,7 +26,7 @@ import java.sql.Statement;
 import java.util.Locale;
 
 
-public class DeleteActivity extends Activity implements View.OnClickListener, TextToSpeech.OnInitListener {
+public class DeleteActivity extends Activity implements View.OnClickListener {
 
     private Button yesbutton; //Button for if user clicks yes
     private Button nobutton; //Button for if user clicks no
@@ -40,7 +40,6 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
     private Intent movebackyes; //Moves user back to EventList if yes is clicked
     private Intent movebackno; //Moves user back to EventList if no is clicked
     private Intent notifclicked; //Moves user to eventlist for new event
-    private TextToSpeech speaker; // speaker for speaking event added
     private NotificationManager notificationManager; // for notifications
     private NotificationCompat.Builder notif; //For notification
 
@@ -109,9 +108,6 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
         //Setting t to the background runnable, to be used when we are ready
         t = new Thread(background);
 
-        //Initialize Text to Speech engine (context, listener object)
-        speaker = new TextToSpeech(this, this);
-
     }
 
 
@@ -139,41 +135,6 @@ public class DeleteActivity extends Activity implements View.OnClickListener, Te
     public void exit(MenuItem item) {
         System.exit(0);
     }
-
-  /*  @TargetApi(21)
-    public void speak(String output){
-        if(output.equals(null))
-        {
-
-        }
-        else
-            speaker.speak(output, TextToSpeech.QUEUE_FLUSH, null, "Id 0");
-    } */
-
-    //For text to speech
-    public void onInit(int status) {
-        // status can be either TextToSpeech.SUCCESS or TextToSpeech.ERROR.
-        if (status == TextToSpeech.SUCCESS) {
-            // Set preferred language to US english.
-            // If a language is not be available, the result will indicate it.
-            int result = speaker.setLanguage(Locale.US);
-
-            //  int result = speaker.setLanguage(Locale.FRANCE);
-            if (result == TextToSpeech.LANG_MISSING_DATA ||
-                    result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                // Language data is missing or the language is not supported.
-                Log.e(tag, "Language is not available.");
-            } else {
-                // The TTS engine has been successfully initialized
-                Log.i(tag, "TTS Initialization successful.");
-            }
-        } else {
-            // Initialization failed.
-            Log.e(tag, "Could not initialize TextToSpeech.");
-        }
-    }
-
-
 
     public void onClick(View v) { //Onclick listener
         switch (v.getId()) {
