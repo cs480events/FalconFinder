@@ -23,7 +23,7 @@ public class SignUp extends Activity implements OnClickListener {
 
     private TextView firstName; // text view of user email
     private TextView lastName; // text view of user password
-    private TextView email;
+    private TextView email; //fdkjafklasdjf;kls
     private TextView password;
 
     private EditText enterFirstName;
