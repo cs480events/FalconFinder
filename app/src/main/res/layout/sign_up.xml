@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/myRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:text="Last Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="#ff00ff00"
+        android:id="@+id/lastName"
+        android:layout_marginBottom="38dp"
+        android:layout_centerVertical="true">
+    </TextView>
+    <TextView
+        android:text="First Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="#ff00ff00"
+        android:id="@+id/firstName"
+        android:layout_above="@id/lastName"
+        >
+    </TextView>
+
+    <EditText
+        android:id="@+id/enterFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoText="true"
+        android:text=""
+        android:layout_alignBottom="@+id/firstName"
+        android:layout_toEndOf="@+id/firstName">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/enterLastName"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/enterFirstName"
+        android:layout_alignBottom="@id/lastName"
+        android:layout_toEndOf="@+id/lastName">
+
+    </EditText>
+
+    <TextView
+        android:text="Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="#ff00ff00"
+        android:id="@+id/email"
+        android:layout_below="@+id/enterLastName"
+        android:layout_alignParentStart="true">
+    </TextView>
+
+    <EditText
+        android:id="@+id/enterEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoText="true"
+        android:text=""
+        android:layout_alignBottom="@+id/email"
+        android:layout_below="@+id/enterLastName"
+        android:layout_toEndOf="@+id/lastName">
+    </EditText>
+
+    <TextView
+        android:text="Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="#ff00ff00"
+        android:id="@+id/password"
+        android:layout_below="@+id/enterEmail"
+        android:layout_alignParentStart="true">
+    </TextView>
+
+    <EditText
+        android:id="@+id/enterPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoText="true"
+        android:text=""
+        android:layout_alignBottom="@+id/password"
+        android:layout_below="@+id/enterEmail"
+        android:layout_toEndOf="@+id/firstName">
+    </EditText>
+
+    <Button
+        android:id="@+id/signup"
+        android:text="Sign Up"
+        style="@style/buttonStyle"
+        android:layout_below="@+id/password"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
