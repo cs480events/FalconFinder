@@ -146,6 +146,12 @@ public class MainActivity extends Activity implements OnClickListener, TextToSpe
                 t.start(); // starting a thread
                 break;
             }
+            case R.id.signup:
+            {
+                Intent s = new Intent(this,SignUp.class);
+                startActivity(s);
+                break;
+            }
 
         }
     }

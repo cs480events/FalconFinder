@@ -70,6 +70,18 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@color/AOrange"/>
+    <Button
+        android:id="@+id/signup"
+        android:text="sign up"
+        style="@style/buttonStyle"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/signin"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/AOrange"/>
 
     <Button
         android:id="@+id/log_in_web"

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/blue" >
+    android:background="@color/white" >
 
     <TextView
         android:id="@+id/status"
@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:layout_span="2"
         android:text=""
-        android:textColor="#ef830f"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         android:paddingBottom="100dp"/>
@@ -20,12 +20,14 @@
         android:id="@+id/yesbutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/AOrange"
         android:text="@string/yes" />
 
     <Button
         android:id="@+id/nobutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/AOrange"
         android:text="@string/no" />
 
 
