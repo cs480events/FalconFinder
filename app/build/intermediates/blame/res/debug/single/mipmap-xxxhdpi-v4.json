@@ -4,6 +4,10 @@
         "source": "C:\\Users\\leonard_thom\\AndroidStudioProjects\\FalconFinder\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
+        "merged": "C:\\Users\\MARAT_DULA\\FalconFinder\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\MARAT_DULA\\FalconFinder\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
         "merged": "C:\\Users\\TORRES_SANT\\AndroidStudioProjects\\Events-1\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\ic_launcher.png",
         "source": "C:\\Users\\TORRES_SANT\\AndroidStudioProjects\\Events-1\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },

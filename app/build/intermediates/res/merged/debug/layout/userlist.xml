@@ -22,38 +22,6 @@
 
     </TableRow>
 
-    <TableRow
-        android:gravity="center"
-        android:layout_marginTop="5dp">
-
-        <TextView
-            android:id="@+id/eventname"
-            style="@style/userListTextView"
-            android:text="@string/event_name"
-            android:layout_marginRight="-40dp"
-            android:layout_marginLeft="0dp" />
-
-        <TextView
-            android:id="@+id/location"
-            style="@style/userListTextView"
-            android:text="@string/location"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="-30dp" />
-
-        <TextView
-            android:id="@+id/Date"
-            style="@style/userListTextView"
-            android:text="@string/date"
-            android:layout_marginLeft="-10dp" />
-
-        <TextView
-            android:id="@+id/time"
-            style="@style/userListTextView"
-            android:text="@string/time"
-            android:layout_marginLeft="40dp" />
-
-    </TableRow>
-
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"

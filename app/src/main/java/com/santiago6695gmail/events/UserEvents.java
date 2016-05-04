@@ -129,9 +129,6 @@ public class UserEvents extends Activity implements AdapterView.OnItemClickListe
                 ResultSet result = stmt.executeQuery(
                         "SELECT SUMMARY, LOCATION, DATE, START_TIME, EVENTID FROM cs460teamc.eventlist WHERE " +
                                 "EVENTID IN (SELECT EVENT_ID FROM cs460teamc.user_event WHERE email=" + MainActivity.useremail + ");"); //Very long SQL query to grab all the info for each event user is registered for
-                 //   Log.e("Useremail",MainActivity.useremail);
-                Log.e("Fuck", "SELECT SUMMARY, LOCATION, DATE, START_TIME, EVENTID FROM cs460teamc.eventlist WHERE " +
-                        "EVENTID IN (SELECT EVENT_ID FROM cs460teamc.user_event WHERE email=" + MainActivity.useremail + ");");
                 while (result.next()) {
 
                         String eventnames = result.getString("summary"); //event name
