@@ -35,7 +35,8 @@
         android:text=""
         android:layout_alignBottom="@+id/email"
         android:layout_toEndOf="@+id/email"
-        android:layout_toRightOf="@+id/email">
+        android:layout_toRightOf="@+id/email"
+        android:layout_alignTop="@+id/email">
     </EditText>
 
     <TextView
@@ -62,17 +63,22 @@
         style="@style/buttonStyle"
         android:layout_width="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/log_in_web"
         android:text="@string/log_in_online"
         style="@style/buttonStyle"
         android:layout_width="wrap_content"
-        android:layout_marginBottom="51dp"
-        android:layout_above="@+id/dialerbutt"
-        android:layout_centerHorizontal="true"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_alignRight="@+id/enterPassword"
+        android:layout_alignEnd="@+id/enterPassword"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_above="@+id/dialerbutt" />
 
     <Button
         android:id="@+id/dialerbutt"
@@ -81,7 +87,10 @@
         android:color="#de0909"
         android:layout_width="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/enterPassword"
+        android:layout_alignEnd="@+id/enterPassword"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false" />
 
 
 </RelativeLayout>
