@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -70,6 +71,7 @@ public class MainActivity extends Activity implements OnClickListener, TextToSpe
         // setting up the text view and edit text views for user to enter
         emailField = (EditText) findViewById(R.id.enterEmail);
         passwordField = (EditText) findViewById(R.id.enterPassword);
+        passwordField.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         userEmail = (TextView) findViewById(R.id.email);
         userPassword = (TextView) findViewById(R.id.password);
