@@ -6,23 +6,24 @@
     android:background="@color/Ablue">
 
     <TextView
-        android:text="Last Name"
+        android:id="@+id/lastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textColor="@color/black"
-        android:id="@+id/lastName"
+        android:layout_centerVertical="true"
         android:layout_marginBottom="38dp"
-        android:layout_centerVertical="true">
+        android:text="Last Name"
+        android:textColor="@color/black"
+        android:textSize="30sp">
     </TextView>
     <TextView
-        android:text="First Name"
+        android:id="@+id/firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textColor="@color/black"
-        android:id="@+id/firstName"
         android:layout_above="@id/lastName"
+        android:text="First Name"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+
         >
     </TextView>
 
@@ -30,79 +31,80 @@
         android:id="@+id/enterFirstName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:autoText="true"
-        android:text=""
         android:layout_alignBottom="@+id/firstName"
         android:layout_toEndOf="@+id/firstName"
+        android:autoText="true"
+        android:text=""
         android:textColor="@color/black">
+
 
     </EditText>
 
     <EditText
         android:id="@+id/enterLastName"
-        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/enterFirstName"
         android:layout_alignBottom="@id/lastName"
+        android:layout_alignTop="@id/lastName"
         android:layout_toEndOf="@+id/lastName"
         android:textColor="@color/black">
 
     </EditText>
 
     <TextView
-        android:text="Email"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textColor="@color/black"
-        android:id="@+id/email"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/enterLastName"
-        android:layout_alignParentStart="true">
+        android:layout_marginBottom="10dp"
+        android:text="Email"
+        android:textColor="@color/black"
+        android:textSize="30sp">
     </TextView>
 
     <EditText
         android:id="@+id/enterEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:autoText="true"
-        android:text=""
         android:layout_alignBottom="@+id/email"
         android:layout_below="@+id/enterLastName"
         android:layout_toEndOf="@+id/lastName"
+        android:autoText="true"
+        android:text=""
         android:textColor="@color/black">
     </EditText>
 
     <TextView
-        android:text="Password"
+        android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textColor="@color/black"
-        android:id="@+id/password"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/enterEmail"
-        android:layout_alignParentStart="true">
+        android:text="Password"
+        android:textColor="@color/black"
+        android:textSize="30sp">
     </TextView>
 
     <EditText
         android:id="@+id/enterPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:autoText="true"
-        android:text=""
         android:layout_alignBottom="@+id/password"
         android:layout_below="@+id/enterEmail"
         android:layout_toEndOf="@+id/firstName"
+        android:autoText="true"
+        android:text=""
         android:textColor="@color/black">
     </EditText>
 
     <Button
         android:id="@+id/signup"
-        android:text="Sign Up"
         style="@style/buttonStyle"
         android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
-        android:background="@color/AOrange"/>
+        android:background="@color/AOrange"
+        android:text="Sign Up"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

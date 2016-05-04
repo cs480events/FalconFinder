@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -38,7 +39,10 @@ public class SignUp extends Activity implements OnClickListener {
     private String useremail;
 
     private Button signUp;
-    private Thread t = null; //variable for thread
+    private Thread t = null;//variable for thread
+    private Toast success;
+    private Toast fail;
+
     private Runnable background = new Runnable() {
         public void run() {
             //Database credentials and url for easuer use
@@ -68,12 +72,20 @@ public class SignUp extends Activity implements OnClickListener {
                 // Hash a password for the first time
                 String hashed = BCrypt.hashpw(passwordString, BCrypt.gensalt());
 
-                stmt.executeUpdate("insert into cs460teamc.user values " +
+                int sqlIdentifier = stmt.executeUpdate("insert into cs460teamc.user values " +
                         "(NULL, '" + emailString + "','" + hashed + "','" + firstNameString + "','" + lastNameString + "');");
+
+                Log.e("hello world", String.valueOf(sqlIdentifier));
+
+                if (sqlIdentifier == 1) {
+                    success.show();
+                }
+
 
             } catch (SQLException e) { // catch
                 Log.e("JDBC", "problems with SQL sent to " + URL +
                         ": " + e.getMessage());
+                fail.show();
             } finally {
                 try {
                     con.close();
@@ -107,6 +119,10 @@ public class SignUp extends Activity implements OnClickListener {
 
         signUp = (Button) findViewById(R.id.signup);
         signUp.setOnClickListener(this);
+
+        success = Toast.makeText(this, "You have signed up successfully!", Toast.LENGTH_LONG); //Setting up the toast for later us
+        fail = Toast.makeText(this, "An account already exists for this username!!", Toast.LENGTH_LONG); //Setting up the toast for later us
+
 
 
     }
