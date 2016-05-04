@@ -140,7 +140,7 @@ public class    EventList extends Activity implements AdapterView.OnItemClickLis
                            String eventdate = result.getString("date"); //event date
                            String eventtime = result.getString("start_time"); //event start time
                            String eventID = result.getString("EventID"); //primary key, ABSOLUTELY NECCESARY
-                           String finalevents = " " + eventnames + "  " +  "\n" + "\n" + "\n" + "   " +
+                           String finalevents = " " + eventnames + "  " + "\n" + "\n"  +
                                    eventloc + "\n" + eventdate + "\n" + eventtime + "\n"; //format for the user's pleasure
                            items.add(finalevents); //add the formatted string to the list view
 
