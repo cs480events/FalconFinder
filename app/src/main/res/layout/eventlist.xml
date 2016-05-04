@@ -3,10 +3,10 @@
     android:id="@+id/myTableLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue" >
+    android:background="@color/white" >
 
     <TableRow
-        android:background="@color/yellow">
+        android:background="@color/Ablue">
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
