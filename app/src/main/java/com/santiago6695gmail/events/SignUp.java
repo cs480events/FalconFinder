@@ -39,7 +39,53 @@ public class SignUp extends Activity implements OnClickListener {
 
     private Button signUp;
     private Thread t = null; //variable for thread
+    private Runnable background = new Runnable() {
+        public void run() {
+            //Database credentials and url for easuer use
+            String URL = "jdbc:mysql://frodo.bentley.edu:3306/CS460Teamc";
+            String username = "cs460teamc";
+            String password = "cs460teamc";
 
+            try { //load driver into VM memory
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                Log.e("JDBC", "Did not load driver");
+            }
+
+            Statement stmt = null;
+            Connection con = null;
+            try { //create connection and statement objects
+                con = DriverManager.getConnection(
+                        URL,
+                        username,
+                        password);
+                stmt = con.createStatement();
+            } catch (SQLException e) {
+                Log.e("JDBC", "problem connecting");
+            }
+
+            try {
+                // Hash a password for the first time
+                String hashed = BCrypt.hashpw(passwordString, BCrypt.gensalt());
+
+                stmt.executeUpdate("insert into cs460teamc.user values " +
+                        "(NULL, '" + emailString + "','" + hashed + "','" + firstNameString + "','" + lastNameString + "');");
+
+            } catch (SQLException e) { // catch
+                Log.e("JDBC", "problems with SQL sent to " + URL +
+                        ": " + e.getMessage());
+            } finally {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    Log.e("JDBC", "problems with SQL sent to " + URL +
+                            ": " + e.getMessage());
+                }
+
+            }
+
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -85,57 +131,5 @@ public class SignUp extends Activity implements OnClickListener {
 
         }
     }
-
-    private Runnable background = new Runnable() {
-        public void run() {
-            //Database credentials and url for easuer use
-            String URL = "jdbc:mysql://frodo.bentley.edu:3306/CS460Teamc";
-            String username = "cs460teamc";
-            String password = "cs460teamc";
-
-            try { //load driver into VM memory
-                Class.forName("com.mysql.jdbc.Driver");
-            } catch (ClassNotFoundException e) {
-                Log.e("JDBC", "Did not load driver");
-            }
-
-            Statement stmt = null;
-            Connection con = null;
-            try { //create connection and statement objects
-                con = DriverManager.getConnection(
-                        URL,
-                        username,
-                        password);
-                stmt = con.createStatement();
-            } catch (SQLException e) {
-                Log.e("JDBC", "problem connecting");
-            }
-
-            try {
-                // Hash a password for the first time
-                String hashed = BCrypt.hashpw(passwordString, BCrypt.gensalt());
-
-                stmt.executeQuery("insert into cs460teamc.user values " +
-                        "(NULL, '" + emailString + "','" + hashed + "','" + firstNameString + "','" + lastNameString + "');");
-
-                }
-                    catch (SQLException e)
-                    { // catch
-                    Log.e("JDBC","problems with SQL sent to "+URL+
-                            ": "+e.getMessage());
-                    }
-            finally
-            {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                    Log.e("JDBC","problems with SQL sent to "+URL+
-                            ": "+e.getMessage());
-                }
-
-            }
-
-        }
-    };
 
 }

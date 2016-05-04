@@ -23,6 +23,7 @@
         <activity android:name=".UserEvents" />
         <activity android:name=".DeleteActivity" />
         <activity android:name=".Category" />
+        <activity android:name=".SignUp" />
     </application>
     <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
 </manifest>
