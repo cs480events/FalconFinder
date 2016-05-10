@@ -149,18 +149,19 @@ public class MainActivity extends Activity implements OnClickListener, TextToSpe
         signUpButton.setOnClickListener(this);
 
         admindial = (Button) findViewById(R.id.dialerbutt);
-        admindial.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-                // dialer to call a cell phone for our teammate
-                Uri dialuri = Uri.parse("tel:6039217921");
-                Intent dialintent = new Intent(Intent.ACTION_CALL, dialuri);
-                startActivity(dialintent); //Has a red line underneath, but runs completely normal
-            }
-        });
+        admindial.setVisibility(View.INVISIBLE);
+//        admindial.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//
+//
+//                // dialer to call a cell phone for our teammate
+//                Uri dialuri = Uri.parse("tel:6039217921");
+//                Intent dialintent = new Intent(Intent.ACTION_CALL, dialuri);
+//                startActivity(dialintent); //Has a red line underneath, but runs completely normal
+//            }
+//        });
 
 
         // intent to declare to it wil move on to another class
