@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -71,29 +72,39 @@ public class MainActivity extends Activity implements OnClickListener, TextToSpe
             try {
                 //executing the statement in the sql database
                 ResultSet result = stmt.executeQuery("select password from cs460teamc.user WHERE email = '" + emailFieldString.trim() + "';");
+
                 Log.e("LOGGINGIN", emailFieldString); // writing to the log loggining with username
                 email = emailFieldString; //storing variable for use of global variable
+
+                Log.e("password is ", passwordField.getText().toString());
+
+
                 while (result.next()) {
                     password = result.getString("password"); // set password
                     Log.e("pass", password); //logg the password what is it encrypted version
                 }
-                char[] ePassword = password.toCharArray(); // get the encrypted password and set character to array
-                ePassword[2] = 'a'; // get the third character in the array a replace with "a" insted of "y" for decryption
-                password = String.valueOf(ePassword); // set the password a string
-
+                if (!(password.equals("cs460teamc"))) {
+                    char[] ePassword = password.toCharArray(); // get the encrypted password and set character to array
+                    ePassword[2] = 'a'; // get the third character in the array a replace with "a" insted of "y" for decryption
+                    password = String.valueOf(ePassword); // set the password a string
                 if (BCrypt.checkpw(passwordField.getText().toString().trim(), password)) // if the encrypted password from database equals the encyrpted password of user
                 {
                     Log.e("M", "True"); // if the password match log it and start activity
                     //Initialize Text to Speech engine
                     speak("Login   Successful"); //Speaks if the login is successful
                     startActivity(i);
+                }
                 } else {
                     Log.e("M", "False"); // if ecnryption passwords don't match
+                    MainActivity.this.runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(MainActivity.this, "Please enter a valid credential.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    Log.e("JDBC TEST", password); // see which password was used
                 }
-                Log.e("JDBC TEST", password); // see which password was used
 
-                //clean up
-                //t = null;
+
             } catch (SQLException e) { // catch
                 Log.e("JDBC", "problems with SQL sent to " + URL +
                         ": " + e.getMessage());
@@ -150,18 +161,19 @@ public class MainActivity extends Activity implements OnClickListener, TextToSpe
 
         admindial = (Button) findViewById(R.id.dialerbutt);
         admindial.setVisibility(View.INVISIBLE);
-//        admindial.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//
-//                // dialer to call a cell phone for our teammate
-//                Uri dialuri = Uri.parse("tel:6039217921");
-//                Intent dialintent = new Intent(Intent.ACTION_CALL, dialuri);
+
+        admindial.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                // dialer to call a cell phone for our teammate
+                Uri dialuri = Uri.parse("tel:6039217921");
+                Intent dialintent = new Intent(Intent.ACTION_CALL, dialuri);
 //                startActivity(dialintent); //Has a red line underneath, but runs completely normal
-//            }
-//        });
+            }
+        });
 
 
         // intent to declare to it wil move on to another class

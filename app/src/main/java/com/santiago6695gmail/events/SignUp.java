@@ -15,6 +15,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -42,6 +44,7 @@ public class SignUp extends Activity implements OnClickListener {
     private Thread t = null;//variable for thread
     private Toast success;
     private Toast fail;
+    private Toast constraint;
 
     private Runnable background = new Runnable() {
         public void run() {
@@ -122,8 +125,7 @@ public class SignUp extends Activity implements OnClickListener {
 
         success = Toast.makeText(this, "You have signed up successfully!", Toast.LENGTH_LONG); //Setting up the toast for later us
         fail = Toast.makeText(this, "An account already exists for this username!!", Toast.LENGTH_LONG); //Setting up the toast for later us
-
-
+        constraint = Toast.makeText(this, "Please use a bentley email and a password with 10 or more characters", Toast.LENGTH_LONG);
 
     }
 
@@ -138,11 +140,18 @@ public class SignUp extends Activity implements OnClickListener {
                 emailString = enterEmail.getText().toString(); // set email field to email field string
                 passwordString = enterPassword.getText().toString(); // set email field to email field string
 
+                String rex = "^(.+)@bentley.edu";
+                Pattern pattern = Pattern.compile(rex);
+                Matcher matcher = pattern.matcher(emailString);
+                if (passwordString.length() >= 10 && matcher.matches() == true) {
                 useremail = "'"+emailString+"'";
                 Log.e("Checking", emailString); // writing to the log checking if it got the username's email
                 t = new Thread(background); // making a thread
                 t.start(); // starting a thread
-                break;
+                    break;
+                } else {
+                    constraint.show();
+                }
             }
 
         }
